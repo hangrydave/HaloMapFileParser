@@ -139,7 +139,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="HaloMapFileParser.cpp" />
+    <ClCompile Include="halo_map_parser.cpp" />
+    <ClCompile Include="halo_2_vista_parser.cpp" />
+    <ClCompile Include="halo_1_ce_parser.cpp" />
+    <ClCompile Include="utilities.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="halo_2_vista_parser.h" />
+    <ClInclude Include="halo_1_ce_parser.h" />
+    <ClInclude Include="utilities.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
