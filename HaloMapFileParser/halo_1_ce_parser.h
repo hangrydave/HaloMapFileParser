@@ -1,5 +1,7 @@
 #include "utilities.h"
 #include <iostream>
+#include <map>
+#include <vector>
 
 using namespace utilities;
 
@@ -15,8 +17,6 @@ public:
     void print();
 
 private:
-    char* buffer;
-
     /*
      * The following 4 structs are pulled from (albeit with some slight changes) https://github.com/ChimpMods/Blam-Creation-Suite/blob/08037eba28885eb2c9a1e579ffdbab011e0e7257/Tags/MandrillLib/CacheInterface/CacheVersions/halo1/halo1_cache_file_types.h
      */
@@ -52,13 +52,13 @@ private:
 #pragma pack(push, 1)
     struct s_cache_file_tag_instance
     {
-        unsigned long group_tags[3];
-        datum_index handle;
-
-        unsigned long name_address;
-        unsigned long base_address;
-
-        bool bool_in_data_file;
+        long tag_group_magic;
+        long parent_group_magic;
+        long grandparent_group_magic;
+        datum_index handle = { -1, -1 };
+        unsigned long name_offset;
+        unsigned long offset;
+        bool is_in_data_file;
         char : 8;
         char : 8;
         char : 8;
@@ -83,9 +83,22 @@ private:
     };
 #pragma pack(pop)
 
+    char* buffer;
+    std::map<int, std::vector<s_cache_file_tag_instance>> tag_group_map;
+
+    long header_size = sizeof(s_cache_file_header);
+    long tag_header_size = sizeof(s_cache_file_tags_header);
+    long tag_size = sizeof(s_cache_file_tag_instance);
+
+    int tag_group_count;
+    int tag_count;
+
     void print_header(s_cache_file_header* header);
     void print_tags_header(s_cache_file_tags_header* tags_header);
-    void print_tag(s_cache_file_tag_instance* tag);
+    void print_tags(s_cache_file_header* header, s_cache_file_tags_header* tags_header);
+    void print_accel_scale(s_cache_file_header* header, s_cache_file_tags_header* tags_header);
+
+    void parse_tags(s_cache_file_header* header, s_cache_file_tags_header* tags_header);
 
     std::string get_readable_file_version(long version);
     std::string get_readable_scenario_type(short type);

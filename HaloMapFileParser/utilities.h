@@ -10,4 +10,5 @@ namespace utilities
 	void print_thing(std::string label, unsigned long data);
 	void print_thing(std::string label, short data);
 	void print_thing(std::string label, bool data);
+	void print_thing(std::string label, float data);
 }

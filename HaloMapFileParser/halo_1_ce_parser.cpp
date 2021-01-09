@@ -10,19 +10,19 @@ void halo_1_ce_parser::print()
     std::cout << std::endl;
 
     s_cache_file_tags_header* tags_header = reinterpret_cast<s_cache_file_tags_header*>(buffer + header->tags_header_address);
+    tag_count = tags_header->tag_count;
+
     print_tags_header(tags_header);
 
     std::cout << std::endl;
 
-    // Pulled the following bits of math from the Assembly project.
-    // https://github.com/XboxChaos/Assembly/blob/79b8554f56fa0f712eabf03b9ba6af4f3b25f514/src/Blamite/Blam/FirstGen/Structures/FirstGenHeader.cs#L99
-    uint32_t meta_offset_mask = tags_header->tags_address - sizeof(s_cache_file_tags_header);
+    print_tags(header, tags_header);
 
-    // https://github.com/XboxChaos/Assembly/blob/79b8554f56fa0f712eabf03b9ba6af4f3b25f514/src/Blamite/Blam/FirstGen/Structures/FirstGenTagTable.cs#L66
-    uint32_t tag_table_offset = header->tags_header_address + tags_header->tags_address - meta_offset_mask;
+    std::cout << std::endl;
 
-    s_cache_file_tag_instance* tag = reinterpret_cast<s_cache_file_tag_instance*>(buffer + tag_table_offset);
-    print_tag(tag);
+    print_accel_scale(header, tags_header);
+
+    std::cout << std::endl;
 }
 
 void halo_1_ce_parser::print_header(s_cache_file_header* header)
@@ -51,17 +51,79 @@ void halo_1_ce_parser::print_tags_header(s_cache_file_tags_header* tags_header)
     print_hex_dec("Geometry data size", tags_header->geometry_data_total_size);
 }
 
-void halo_1_ce_parser::print_tag(s_cache_file_tag_instance* tag)
+void halo_1_ce_parser::print_tags(s_cache_file_header* header, s_cache_file_tags_header* tags_header)
 {
-    std::cout << "----------TAG----------" << std::endl;
-    print_hex_dec("Tag group", tag->group_tags[0]);
-    print_hex_dec("Parent tag group", tag->group_tags[1]);
-    print_hex_dec("Grandparent tag group", tag->group_tags[2]);
-    print_thing("Datum identifier", tag->handle.identifier);
-    print_thing("Datum index", tag->handle.index);
-    print_hex_dec("Name offset", tag->name_address);
-    print_hex_dec("Base offset", tag->base_address);
-    print_thing("In data file", tag->bool_in_data_file);
+
+    std::cout << "----------TAGS----------" << std::endl;
+    std::cout << "Reading tags... ";
+
+    parse_tags(header, tags_header);
+
+    std::cout << "Finished reading " << tag_count << " tags and " << tag_group_count << " tag groups." << std::endl;
+}
+
+void halo_1_ce_parser::print_accel_scale(s_cache_file_header* header, s_cache_file_tags_header* tags_header)
+{
+    std::string label = "Acceleration scale";
+    const int bipd_magic = 1651077220;;
+    const short cyborg_mp_datum_index = 147;
+    const short accel_scale_tag_offset = 0x20;
+
+    std::cout << "----------ACCELERATION SCALE TEST----------" << std::endl;
+
+    // https://github.com/XboxChaos/Assembly/blob/79b8554f56fa0f712eabf03b9ba6af4f3b25f514/src/Blamite/Blam/FirstGen/Structures/FirstGenHeader.cs#L99
+    uint32_t meta_offset_mask = tags_header->tags_address - tag_header_size;
+
+    // https://github.com/XboxChaos/Assembly/blob/79b8554f56fa0f712eabf03b9ba6af4f3b25f514/src/Blamite/Blam/FirstGen/Structures/FirstGenTagTable.cs#L66
+    uint32_t tag_table_offset = header->tags_header_address + tags_header->tags_address - meta_offset_mask;
+
+    std::vector<s_cache_file_tag_instance> tags = tag_group_map[bipd_magic];
+    s_cache_file_tag_instance tag;
+    for (int i = 0; i < tags.size(); i++)
+    {
+        s_cache_file_tag_instance current_tag = tags[i];
+        if (current_tag.handle.index == cyborg_mp_datum_index)
+            tag = current_tag;
+    }
+
+    if (tag.handle.index == -1)
+    {
+        print_thing(label, "Data error");
+        return;
+    }
+
+    int delta = (tag.offset - meta_offset_mask + header->tags_header_address) - header->tags_header_address;
+    int offset = header->tags_header_address + header->tag_data_size - header->tag_data_size + delta;
+
+    int accel_scale_offset = offset + accel_scale_tag_offset;
+    float accel_scale = *reinterpret_cast<float*>(buffer + accel_scale_offset);
+    print_thing(label, accel_scale);
+}
+
+void halo_1_ce_parser::parse_tags(s_cache_file_header* header, s_cache_file_tags_header* tags_header)
+{
+    // yes, the following lines are reused from above, but I don't really care right now
+    // https://github.com/XboxChaos/Assembly/blob/79b8554f56fa0f712eabf03b9ba6af4f3b25f514/src/Blamite/Blam/FirstGen/Structures/FirstGenHeader.cs#L99
+    uint32_t meta_offset_mask = tags_header->tags_address - tag_header_size;
+
+    // https://github.com/XboxChaos/Assembly/blob/79b8554f56fa0f712eabf03b9ba6af4f3b25f514/src/Blamite/Blam/FirstGen/Structures/FirstGenTagTable.cs#L66
+    uint32_t tag_table_offset = header->tags_header_address + tags_header->tags_address - meta_offset_mask;
+
+    long tag_num = tags_header->tag_count;
+    for (int i = 0; i < tag_num; i++)
+    {
+        long offset = tag_table_offset + (i * tag_size);
+
+        s_cache_file_tag_instance* tag = reinterpret_cast<s_cache_file_tag_instance*>(buffer + offset);
+        long magic = tag->tag_group_magic;
+
+        if (tag_group_map.find(magic) == tag_group_map.end())
+            tag_group_map[magic] = std::vector<s_cache_file_tag_instance>();
+
+        tag_group_map[magic].push_back(*tag);
+    }
+
+    tag_group_count = tag_group_map.size();
 }
 
 std::string halo_1_ce_parser::get_readable_file_version(long version)

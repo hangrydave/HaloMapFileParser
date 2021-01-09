@@ -58,3 +58,8 @@ void utilities::print_thing(std::string label, bool data)
 {
     printf("%-40s%-21s\n", label.c_str(), std::to_string(data).c_str());
 }
+
+void utilities::print_thing(std::string label, float data)
+{
+    printf("%-40s%-21s\n", label.c_str(), std::to_string(data).c_str());
+}

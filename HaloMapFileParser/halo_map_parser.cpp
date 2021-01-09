@@ -10,10 +10,9 @@ int main()
     string halo1ce_path = "D:/Program Files (x86)/Microsoft Games/Halo Custom Edition/maps/";
     string halo2v_path = "D:/Games/Halo 2 Project Cartographer/maps/";
 
-    string path = halo2v_path;
-    string map_name = "coagulation.map";
+    string path = halo1ce_path + "bloodgulch.map";
 
-    fstream map_file(path + map_name, ios::in | ios::binary);
+    fstream map_file(path, ios::in | ios::binary);
 
     // https://stackoverflow.com/a/22986486/5132781
     map_file.ignore(numeric_limits<streamsize>::max());
