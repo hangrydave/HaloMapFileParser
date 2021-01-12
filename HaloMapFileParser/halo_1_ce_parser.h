@@ -9,10 +9,7 @@ using namespace utilities;
 class halo_1_ce_parser
 {
 public:
-    halo_1_ce_parser(char* buffer)
-    {
-        this->buffer = buffer;
-    }
+    halo_1_ce_parser(char* buffer);
 
     void print();
 
@@ -84,21 +81,27 @@ private:
 #pragma pack(pop)
 
     char* buffer;
-    std::map<int, std::vector<s_cache_file_tag_instance>> tag_group_map;
+    s_cache_file_header* header;
+    s_cache_file_tags_header* tags_header;
+    std::map<int, std::vector<s_cache_file_tag_instance*>> tag_group_map;
+    std::map<int, s_cache_file_tag_instance*> tag_offset_map;
 
     long header_size = sizeof(s_cache_file_header);
     long tag_header_size = sizeof(s_cache_file_tags_header);
     long tag_size = sizeof(s_cache_file_tag_instance);
 
-    int tag_group_count;
-    int tag_count;
+    int tag_group_count = 0;
+    int tag_count = 0;
 
-    void print_header(s_cache_file_header* header);
-    void print_tags_header(s_cache_file_tags_header* tags_header);
-    void print_tags(s_cache_file_header* header, s_cache_file_tags_header* tags_header);
-    void print_accel_scale(s_cache_file_header* header, s_cache_file_tags_header* tags_header);
+    void print_header();
+    void print_tags_header();
+    void print_tags();
+    void print_accel_scale();
 
-    void parse_tags(s_cache_file_header* header, s_cache_file_tags_header* tags_header);
+    void parse_tags();
+
+    std::string get_group_name(long magic);
+    void export_tags();
 
     std::string get_readable_file_version(long version);
     std::string get_readable_scenario_type(short type);
