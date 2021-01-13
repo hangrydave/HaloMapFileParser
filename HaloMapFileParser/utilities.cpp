@@ -95,6 +95,46 @@ void utilities::write_to_file(const string& path, const char(&bytes)[])
     output.close();
 }
 
+void utilities::read_path(string& parent_path, string& file_path, const char* buffer, long offset)
+{
+    parent_path.clear();
+    file_path.clear();
+
+    char c = buffer[offset];
+    while (c != '\0')
+    {
+        if (c == '\\')
+        {
+            file_path = trim(file_path);
+            parent_path += file_path + '\\';
+            file_path = "";
+        }
+        else
+        {
+            file_path += c;
+        }
+
+        offset++;
+        c = buffer[offset];
+    }
+    file_path = parent_path + file_path;
+
+    if (parent_path.size() != 0)
+        parent_path.pop_back();
+}
+
+void utilities::write_some_chars(const string& path, const char* data, const int start_index, int size)
+{
+    std::ofstream output;
+    output.open(path, std::ios::binary);
+    int end = start_index + size;
+    for (int i = start_index; i < end; i++)
+    {
+        output << data[i];
+    }
+    output.close();
+}
+
 string utilities::read_string(const char* buffer, long offset)
 {
     string s;
@@ -116,60 +156,51 @@ string utilities::read_string_without_slashes(const char* buffer, long offset)
             s += '_';
         else
             s += c;
-        
+
         offset++;
         c = buffer[offset];
     }
     return s;
 }
 
-void utilities::read_path(string& parent_path, string& file_path, const char* buffer, long offset)
+string utilities::hex_to_string(long hex)
 {
-    parent_path.clear();
-    file_path.clear();
+    if (hex == 0)
+        return "";
 
-    string whitespace;
-    char c = buffer[offset];
-    while (c != '\0')
+    int index = 4;
+    char chars[4];
+
+    while (hex > 0)
     {
-        if (c == '\\')
-        {
-
-            if (file_path[file_path.size() - 1] == ' ')
-                file_path = file_path.substr(0, file_path.size() - 1);
-
-            parent_path += file_path + '\\';
-            file_path = "";
-        }
-        else if (c == ' ')
-        {
-            whitespace += c;
-        }
-        else
-        {
-            if (!whitespace.empty())
-            {
-                file_path += whitespace;
-                whitespace.clear();
-            }
-            file_path += c;
-        }
-
-        offset++;
-        c = buffer[offset];
+        index--;
+        chars[index] = (char) (hex & 0xFF);
+        hex >>= 8;
     }
-    file_path = parent_path + file_path;
-    parent_path = parent_path.substr(0, parent_path.size() - 1);
+    return string(chars, 4);
 }
 
-void utilities::write_some_chars(const string& path, const char* data, const int start_index, int size)
+string utilities::trim(const string& s)
 {
-    std::ofstream output;
-    output.open(path, std::ios::binary);
-    int end = start_index + size;
-    for (int i = start_index; i < end; i++)
+    // TODO: as a general thing, I care more about speed than memory usage, so optimize stuff for that
+    int start = -1;
+    for (int i = 0; i < s.size() && start == -1; i++)
     {
-        output << data[i];
+        char c = s[i];
+        if (c != ' ')
+            start = i;
     }
-    output.close();
+
+    if (start == -1)
+        return "";
+
+    int end = -1;
+    for (int i = s.size() - 1; i >= 0 && end == -1; i--)
+    {
+        char c = s[i];
+        if (c != ' ')
+            end = i;
+    }
+
+    return s.substr(start, end + 1 - start);
 }

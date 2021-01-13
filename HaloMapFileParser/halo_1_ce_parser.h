@@ -7,6 +7,7 @@ class halo_1_ce_parser
 {
 public:
     halo_1_ce_parser(std::fstream& reader, char* buffer);
+    ~halo_1_ce_parser();
 
     void print();
 
@@ -83,13 +84,12 @@ private:
     s_cache_file_header* header;
     s_cache_file_tags_header* tags_header;
     std::map<int, std::vector<s_cache_file_tag_instance*>> tag_group_map;
-    std::map<int, s_cache_file_tag_instance*> tag_offset_map;
 
     const long header_size = sizeof(s_cache_file_header);
     const long tag_header_size = sizeof(s_cache_file_tags_header);
     const long tag_size = sizeof(s_cache_file_tag_instance);
-    long tag_table_offset = 0;
 
+    long tag_table_offset = 0;
     int tag_group_count = 0;
     int tag_count = 0;
 
@@ -100,12 +100,12 @@ private:
 
     void parse_tags();
 
-    string get_group_name(long magic);
     void export_tags();
 
     string get_readable_file_version(long version);
     string get_readable_scenario_type(short type);
 
+    // the following numbers were taken from Assembly's tag definitions
     std::map<string, unsigned int> tag_size_map
     {
         { "actr", 1272 },

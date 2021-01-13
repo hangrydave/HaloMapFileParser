@@ -14,11 +14,18 @@ halo_1_ce_parser::halo_1_ce_parser(std::fstream& reader, char* buffer):
     // https://github.com/XboxChaos/Assembly/blob/79b8554f56fa0f712eabf03b9ba6af4f3b25f514/src/Blamite/Blam/FirstGen/Structures/FirstGenHeader.cs#L99
     // https://github.com/XboxChaos/Assembly/blob/79b8554f56fa0f712eabf03b9ba6af4f3b25f514/src/Blamite/Blam/FirstGen/Structures/FirstGenTagTable.cs#L66
     tag_table_offset = header->tags_header_address + tag_header_size;
+
+    parse_tags();
+    export_tags();
+}
+
+halo_1_ce_parser::~halo_1_ce_parser()
+{
 }
 
 void halo_1_ce_parser::print()
 {
-    std::cout << "--------------------HALO CE--------------------\n" << std:: endl;
+    std::cout << "--------------------HALO CE--------------------\n" << std::endl;
     print_header();
     std::cout << std::endl;
     print_tags_header();
@@ -27,7 +34,6 @@ void halo_1_ce_parser::print()
     std::cout << std::endl;
     print_accel_scale();
     std::cout << std::endl;
-    export_tags();
 }
 
 void halo_1_ce_parser::print_header()
@@ -59,11 +65,7 @@ void halo_1_ce_parser::print_tags_header()
 void halo_1_ce_parser::print_tags()
 {
     std::cout << "----------TAGS----------" << std::endl;
-    std::cout << "Reading tags... ";
-
-    parse_tags();
-
-    std::cout << "Finished reading " << tag_count << " tags and " << tag_group_count << " tag groups." << std::endl;
+    std::cout << tag_count << " tags and " << tag_group_count << " tag groups have been read." << std::endl;
 }
 
 void halo_1_ce_parser::print_accel_scale()
@@ -105,13 +107,6 @@ void halo_1_ce_parser::parse_tags()
         long offset = tag_table_offset + (i * tag_size);
 
         s_cache_file_tag_instance* tag = reinterpret_cast<s_cache_file_tag_instance*>(buffer + offset);
-
-        if (tag_offset_map.find(tag->offset) != tag_offset_map.end())
-        {
-            bool b = true;
-        }
-        tag_offset_map[tag->offset] = tag;
-
         long magic = tag->tag_group_magic;
 
         if (tag_group_map.find(magic) == tag_group_map.end())
@@ -119,40 +114,19 @@ void halo_1_ce_parser::parse_tags()
 
         tag_group_map[magic].push_back(tag);
     }
-
     tag_group_count = tag_group_map.size();
-}
-
-std::string halo_1_ce_parser::get_group_name(long magic)
-{
-    if (magic == 0)
-        return "";
-
-    int index = 4;
-    char chars[4];
-
-    while (magic > 0)
-    {
-        index--;
-        chars[index] = (char)(magic & 0xFF);
-        magic >>= 8;
-    }
-
-    if (chars[3] == ' ')
-        return string(chars, 3);
-
-    return string(chars, 4);
 }
 
 void halo_1_ce_parser::export_tags()
 {
-    create_directory("tags");
+    int negative_count = 0;
     tag_group_map_t::iterator it;
     for (it = tag_group_map.begin(); it != tag_group_map.end(); it++)
     {
-        string group_name = get_group_name(it->first);
-        string group_path = "tags\\" + group_name;
-        create_directory(group_path);
+        string group_name = trim(hex_to_string(it->first));
+        string group_path = "tags\\" + string(header->name) + '\\' + group_name;
+        if (!create_directories(group_path))
+            return;
 
         unsigned int size = tag_size_map[group_name];
 
@@ -165,16 +139,20 @@ void halo_1_ce_parser::export_tags()
             string file_path;
             string parent_path;
             read_path(parent_path, file_path, buffer, name_offset);
-            parent_path = group_path + '\\' + parent_path;
+
+            if (parent_path.size() != 0)
+                parent_path = group_path + '\\' + parent_path;
+            else
+                parent_path = group_path;
             file_path = group_path + '\\' + file_path;
 
             create_directories(parent_path);
 
             int tag_offset = tag_table_offset - tags_header->tags_address + tag.offset;
-
             if (tag_offset < 0)
             {
                 // TODO: wtf
+                negative_count++;
                 continue;
             }
 
