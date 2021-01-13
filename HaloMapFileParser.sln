@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HaloMapFileParser", "HaloMapFileParser\HaloMapFileParser.vcxproj", "{6704702F-A37C-4A20-8C08-D5C335F2AA15}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AssemblyPluginParser", "AssemblyPluginParser\AssemblyPluginParser.vcxproj", "{72DBF2D4-6702-41EB-836D-12B581645713}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{6704702F-A37C-4A20-8C08-D5C335F2AA15}.Release|x64.Build.0 = Release|x64
 		{6704702F-A37C-4A20-8C08-D5C335F2AA15}.Release|x86.ActiveCfg = Release|Win32
 		{6704702F-A37C-4A20-8C08-D5C335F2AA15}.Release|x86.Build.0 = Release|Win32
+		{72DBF2D4-6702-41EB-836D-12B581645713}.Debug|x64.ActiveCfg = Debug|x64
+		{72DBF2D4-6702-41EB-836D-12B581645713}.Debug|x64.Build.0 = Debug|x64
+		{72DBF2D4-6702-41EB-836D-12B581645713}.Debug|x86.ActiveCfg = Debug|Win32
+		{72DBF2D4-6702-41EB-836D-12B581645713}.Debug|x86.Build.0 = Debug|Win32
+		{72DBF2D4-6702-41EB-836D-12B581645713}.Release|x64.ActiveCfg = Release|x64
+		{72DBF2D4-6702-41EB-836D-12B581645713}.Release|x64.Build.0 = Release|x64
+		{72DBF2D4-6702-41EB-836D-12B581645713}.Release|x86.ActiveCfg = Release|Win32
+		{72DBF2D4-6702-41EB-836D-12B581645713}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

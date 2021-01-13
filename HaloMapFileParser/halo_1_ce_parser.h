@@ -1,7 +1,4 @@
 #include "utilities.h"
-#include <iostream>
-#include <map>
-#include <vector>
 
 using namespace utilities;
 
@@ -9,7 +6,7 @@ using namespace utilities;
 class halo_1_ce_parser
 {
 public:
-    halo_1_ce_parser(char* buffer);
+    halo_1_ce_parser(std::fstream& reader, char* buffer);
 
     void print();
 
@@ -80,15 +77,18 @@ private:
     };
 #pragma pack(pop)
 
+    std::fstream& file_reader;
     char* buffer;
+
     s_cache_file_header* header;
     s_cache_file_tags_header* tags_header;
     std::map<int, std::vector<s_cache_file_tag_instance*>> tag_group_map;
     std::map<int, s_cache_file_tag_instance*> tag_offset_map;
 
-    long header_size = sizeof(s_cache_file_header);
-    long tag_header_size = sizeof(s_cache_file_tags_header);
-    long tag_size = sizeof(s_cache_file_tag_instance);
+    const long header_size = sizeof(s_cache_file_header);
+    const long tag_header_size = sizeof(s_cache_file_tags_header);
+    const long tag_size = sizeof(s_cache_file_tag_instance);
+    long tag_table_offset = 0;
 
     int tag_group_count = 0;
     int tag_count = 0;
@@ -100,10 +100,97 @@ private:
 
     void parse_tags();
 
-    std::string get_group_name(long magic);
+    string get_group_name(long magic);
     void export_tags();
 
-    std::string get_readable_file_version(long version);
-    std::string get_readable_scenario_type(short type);
+    string get_readable_file_version(long version);
+    string get_readable_scenario_type(short type);
+
+    std::map<string, unsigned int> tag_size_map
+    {
+        { "actr", 1272 },
+        { "actv", 568 },
+        { "ant!", 208 },
+        { "antr", 128 },
+        { "bipd", 1268 },
+        { "bitm", 108 },
+        { "boom", 4 },
+        { "cdmg", 512 },
+        { "coll", 664 },
+        { "colo", 12 },
+        { "cont", 324 },
+        { "ctrl", 792 },
+        { "deca", 268 },
+        { "DeLa", 1004 },
+        { "devc", 44 },
+        { "devi", 656 },
+        { "dobc", 128 },
+        { "effe", 64 },
+        { "elec", 264 },
+        { "eqip", 944 },
+        { "flag", 96 },
+        { "fog", 396 },
+        { "font", 156 },
+        { "foot", 140 },
+        { "garb", 944 },
+        { "glw!", 340 },
+        { "grhi", 504 },
+        { "hmt", 128 },
+        { "hud#", 100 },
+        { "hudg", 1104 },
+        { "item", 776 },
+        { "itmc", 92 },
+        { "jpt!", 672 },
+        { "lens", 240 },
+        { "lifi", 720 },
+        { "ligh", 352 },
+        { "lsnd", 84 },
+        { "mach", 804 },
+        { "matg", 428 },
+        { "metr", 172 },
+        { "mgs2", 332 },
+        { "mod2", 232 },
+        { "mode", 232 },
+        { "mply", 12 },
+        { "ngpr", 896 },
+        { "obje", 380 },
+        { "part", 356 },
+        { "pctl", 104 },
+        { "phys", 128 },
+        { "plac", 508 },
+        { "pphy", 64 },
+        { "proj", 588 },
+        { "rain", 48 },
+        { "sbsp", 648 },
+        { "scen", 508 },
+        { "scex", 120 },
+        { "schi", 108 },
+        { "scnr", 1456 },
+        { "senv", 836 },
+        { "sgla", 480 },
+        { "shdr", 40 },
+        { "sky", 208 },
+        { "smet", 260 },
+        { "snd!", 164 },
+        { "snde", 72 },
+        { "soso", 440 },
+        { "sotr", 108 },
+        { "Soul", 12 },
+        { "spla", 332 },
+        { "ssce", 508 },
+        { "str#", 12 },
+        { "swat", 320 },
+        { "tagc", 12 },
+        { "trak", 48 },
+        { "udlg", 4112 },
+        { "unhi", 1388 },
+        { "unit", 752 },
+        { "ustr", 12 },
+        { "vcky", 60 },
+        { "vehi", 1008 },
+        { "weap", 1288 },
+        { "wind", 64 },
+        { "wphi", 380 }
+    };
 };
 

@@ -3,6 +3,8 @@
 #include "halo_1_ce_parser.h"
 #include "halo_2_vista_parser.h"
 
+#include "utilities.h"
+
 using namespace std;
 
 int main()
@@ -23,13 +25,13 @@ int main()
     char* buffer = new char[length];
     map_file.read(buffer, length);
 
-    halo_1_ce_parser h1_parser(buffer);
+    halo_1_ce_parser h1_parser(map_file, buffer);
     h1_parser.print();
 
     cout << "\n\n\n";
 
-    halo_2_vista_parser h2_parser(buffer);
-    h2_parser.print();
+    //halo_2_vista_parser h2_parser(buffer);
+    //h2_parser.print();
 
     return 0;
 }

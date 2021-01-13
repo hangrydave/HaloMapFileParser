@@ -1,15 +1,19 @@
 #include "halo_1_ce_parser.h"
-#include <algorithm>
 
 #define tag_list_t std::vector<s_cache_file_tag_instance*>
 #define tag_group_map_t std::map<int, std::vector<s_cache_file_tag_instance*>>
 
-halo_1_ce_parser::halo_1_ce_parser(char* buffer)
+halo_1_ce_parser::halo_1_ce_parser(std::fstream& reader, char* buffer):
+    file_reader(reader)
 {
     this->buffer = buffer;
     header = reinterpret_cast<s_cache_file_header*>(buffer);
     tags_header = reinterpret_cast<s_cache_file_tags_header*>(buffer + header->tags_header_address);
     tag_count = tags_header->tag_count;
+
+    // https://github.com/XboxChaos/Assembly/blob/79b8554f56fa0f712eabf03b9ba6af4f3b25f514/src/Blamite/Blam/FirstGen/Structures/FirstGenHeader.cs#L99
+    // https://github.com/XboxChaos/Assembly/blob/79b8554f56fa0f712eabf03b9ba6af4f3b25f514/src/Blamite/Blam/FirstGen/Structures/FirstGenTagTable.cs#L66
+    tag_table_offset = header->tags_header_address + tag_header_size;
 }
 
 void halo_1_ce_parser::print()
@@ -54,7 +58,6 @@ void halo_1_ce_parser::print_tags_header()
 
 void halo_1_ce_parser::print_tags()
 {
-
     std::cout << "----------TAGS----------" << std::endl;
     std::cout << "Reading tags... ";
 
@@ -72,12 +75,6 @@ void halo_1_ce_parser::print_accel_scale()
 
     std::cout << "----------ACCELERATION SCALE TEST----------" << std::endl;
 
-    // https://github.com/XboxChaos/Assembly/blob/79b8554f56fa0f712eabf03b9ba6af4f3b25f514/src/Blamite/Blam/FirstGen/Structures/FirstGenHeader.cs#L99
-    uint32_t meta_offset_mask = tags_header->tags_address - tag_header_size;
-
-    // https://github.com/XboxChaos/Assembly/blob/79b8554f56fa0f712eabf03b9ba6af4f3b25f514/src/Blamite/Blam/FirstGen/Structures/FirstGenTagTable.cs#L66
-    uint32_t tag_table_offset = header->tags_header_address + tags_header->tags_address - meta_offset_mask;
-
     tag_list_t tags = tag_group_map[bipd_magic];
     s_cache_file_tag_instance tag;
     for (int i = 0; i < tags.size(); i++)
@@ -93,9 +90,7 @@ void halo_1_ce_parser::print_accel_scale()
         return;
     }
 
-    //int delta = (tag.offset - meta_offset_mask + header->tags_header_address) - header->tags_header_address;
-    int delta = tag.offset - meta_offset_mask;
-    int offset = header->tags_header_address + delta;
+    int offset = tag_table_offset + tag.offset - tags_header->tags_address;
 
     int accel_scale_offset = offset + accel_scale_tag_offset;
     float accel_scale = *reinterpret_cast<float*>(buffer + accel_scale_offset);
@@ -104,13 +99,6 @@ void halo_1_ce_parser::print_accel_scale()
 
 void halo_1_ce_parser::parse_tags()
 {
-    // yes, the following lines are reused from above, but I don't really care right now
-    // https://github.com/XboxChaos/Assembly/blob/79b8554f56fa0f712eabf03b9ba6af4f3b25f514/src/Blamite/Blam/FirstGen/Structures/FirstGenHeader.cs#L99
-    uint32_t meta_offset_mask = tags_header->tags_address - tag_header_size;
-
-    // https://github.com/XboxChaos/Assembly/blob/79b8554f56fa0f712eabf03b9ba6af4f3b25f514/src/Blamite/Blam/FirstGen/Structures/FirstGenTagTable.cs#L66
-    uint32_t tag_table_offset = header->tags_header_address + tags_header->tags_address - meta_offset_mask;
-
     long tag_num = tags_header->tag_count;
     for (int i = 0; i < tag_num; i++)
     {
@@ -166,19 +154,31 @@ void halo_1_ce_parser::export_tags()
         string group_path = "tags\\" + group_name;
         create_directory(group_path);
 
+        unsigned int size = tag_size_map[group_name];
+
         tag_list_t tags = it->second;
         for (int i = 0; i < tags.size(); i++)
         {
             s_cache_file_tag_instance tag = *tags[i];
-            long offset = header->tags_header_address + tag_header_size + tag.name_offset - tags_header->tags_address;
+            int name_offset = tag_table_offset - tags_header->tags_address + tag.name_offset;
 
-            string name;
-            string tag_path;
-            get_path_and_name(tag_path, name, buffer, offset);
-            tag_path = group_path + '\\' + tag_path;
+            string file_path;
+            string parent_path;
+            read_path(parent_path, file_path, buffer, name_offset);
+            parent_path = group_path + '\\' + parent_path;
+            file_path = group_path + '\\' + file_path;
 
-            create_directories(tag_path);
-            create_file(tag_path + '\\' + name);
+            create_directories(parent_path);
+
+            int tag_offset = tag_table_offset - tags_header->tags_address + tag.offset;
+
+            if (tag_offset < 0)
+            {
+                // TODO: wtf
+                continue;
+            }
+
+            write_some_chars(file_path, buffer, tag_offset, size);
         }
     }
 }
