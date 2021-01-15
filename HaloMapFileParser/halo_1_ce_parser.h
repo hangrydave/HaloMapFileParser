@@ -78,8 +78,8 @@ private:
     };
 #pragma pack(pop)
 
-    std::fstream& file_reader;
-    char* buffer;
+    std::fstream& cache_reader;
+    char* cache_buffer;
 
     s_cache_file_header* header;
     s_cache_file_tags_header* tags_header;

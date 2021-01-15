@@ -4,9 +4,9 @@
 #define tag_group_map_t std::map<int, std::vector<s_cache_file_tag_instance*>>
 
 halo_1_ce_parser::halo_1_ce_parser(std::fstream& reader, char* buffer):
-    file_reader(reader)
+    cache_reader(reader)
 {
-    this->buffer = buffer;
+    this->cache_buffer = buffer;
     header = reinterpret_cast<s_cache_file_header*>(buffer);
     tags_header = reinterpret_cast<s_cache_file_tags_header*>(buffer + header->tags_header_address);
     tag_count = tags_header->tag_count;
@@ -95,7 +95,7 @@ void halo_1_ce_parser::print_accel_scale()
     int offset = tag_table_offset + tag.offset - tags_header->tags_address;
 
     int accel_scale_offset = offset + accel_scale_tag_offset;
-    float accel_scale = *reinterpret_cast<float*>(buffer + accel_scale_offset);
+    float accel_scale = *reinterpret_cast<float*>(cache_buffer + accel_scale_offset);
     print_thing(label, accel_scale);
 }
 
@@ -106,7 +106,7 @@ void halo_1_ce_parser::parse_tags()
     {
         long offset = tag_table_offset + (i * tag_size);
 
-        s_cache_file_tag_instance* tag = reinterpret_cast<s_cache_file_tag_instance*>(buffer + offset);
+        s_cache_file_tag_instance* tag = reinterpret_cast<s_cache_file_tag_instance*>(cache_buffer + offset);
         long magic = tag->tag_group_magic;
 
         if (tag_group_map.find(magic) == tag_group_map.end())
@@ -138,7 +138,7 @@ void halo_1_ce_parser::export_tags()
 
             string file_path;
             string parent_path;
-            read_path(parent_path, file_path, buffer, name_offset);
+            read_path(parent_path, file_path, cache_buffer, name_offset);
 
             if (parent_path.size() != 0)
                 parent_path = group_path + '\\' + parent_path;
@@ -156,7 +156,7 @@ void halo_1_ce_parser::export_tags()
                 continue;
             }
 
-            write_some_chars(file_path, buffer, tag_offset, size);
+            write_some_chars(file_path, cache_buffer, tag_offset, size);
         }
     }
 }
