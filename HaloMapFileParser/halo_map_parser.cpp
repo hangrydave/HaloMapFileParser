@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
-#include "halo_1_ce_parser.h"
-#include "halo_2_vista_parser.h"
+#include "halo1ce/halo_1_ce_parser.h"
+#include "halo2vista/halo_2_vista_parser.h"
 
 #include "utilities.h"
 
