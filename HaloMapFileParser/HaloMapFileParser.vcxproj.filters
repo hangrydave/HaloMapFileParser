@@ -38,5 +38,8 @@
     <ClInclude Include="halo2vista\halo_2_vista_parser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="halo2vista\tag_structs\bitmaps.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

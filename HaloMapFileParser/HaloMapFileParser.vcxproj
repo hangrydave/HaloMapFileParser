@@ -148,6 +148,7 @@
   <ItemGroup>
     <ClInclude Include="halo1ce\halo_1_ce_parser.h" />
     <ClInclude Include="halo2vista\halo_2_vista_parser.h" />
+    <ClInclude Include="halo2vista\tag_structs\bitmaps.h" />
     <ClInclude Include="utilities.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

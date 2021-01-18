@@ -21,6 +21,7 @@ namespace utilities
 	void print_thing(const string& label, short data);
 	void print_thing(const string& label, bool data);
 	void print_thing(const string& label, float data);
+	void print_magic(const string& label, long magic);
 
 	bool create_directory(const string& path);
 	bool create_directories(const string& path);
@@ -29,6 +30,7 @@ namespace utilities
 	void read_path(string& parent_path, string& file_path, const char* buffer, long offset);
 	void write_some_chars(const string& path, const char* data, int start_index, int size);
 
+	int read_int(const char* buffer, long offset);
 	string read_string(const char* buffer, long offset);
 	string read_string_without_slashes(const char* buffer, long offset);
 

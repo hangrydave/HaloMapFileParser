@@ -1,20 +1,119 @@
 #include "halo_2_vista_parser.h"
 
+halo_2_vista_parser::halo_2_vista_parser(char* buffer)
+{
+    this->cache_buffer = buffer;
+    parse_cache();
+}
+
+halo_2_vista_parser::~halo_2_vista_parser()
+{
+}
+
+void halo_2_vista_parser::register_tag(s_tag_element* tag)
+{
+    short datum_index = tag->datum_index.index;
+    if (datum_to_tag_map.find(datum_index) != datum_to_tag_map.end())
+        return;
+
+    // datum map
+    datum_to_tag_map[datum_index] = tag;
+
+    long group_magic = tag->tag_group_magic;
+    if (magic_to_tags_map.find(group_magic) == magic_to_tags_map.end())
+        magic_to_tags_map[group_magic] = new std::vector<s_tag_element*>();
+
+    // group magic -> tags map
+    magic_to_tags_map[group_magic]->push_back(tag);
+}
+
+void halo_2_vista_parser::register_string(std::vector<string>& string_vector, int index, int table_index_offset, int table_offset)
+{
+    int string_offset_offset = table_index_offset + index * 4;
+    int string_offset = read_int(cache_buffer, string_offset_offset);
+    if (string_offset == -1)
+        string_vector[index] = "";
+    else
+        string_vector[index] = read_string(cache_buffer, table_offset + string_offset);
+}
+
+long halo_2_vista_parser::get_tag_file_offset(s_tag_element* tag)
+{
+    long offset = header->meta_offset + tag->offset - header->meta_offset_mask;
+    return offset;
+}
+
+void halo_2_vista_parser::parse_tag_groups()
+{
+    long group_table_offset = header->meta_offset + tags_header->tag_group_table_offset;
+    long group_count = tags_header->number_of_tag_groups;
+    for (int i = 0; i < group_count; i++)
+    {
+        long group_offset = group_table_offset + i * tag_group_element_size;
+        s_tag_group_element* group = reinterpret_cast<s_tag_group_element*>(cache_buffer + group_offset);
+        
+        long magic = group->magic;
+        if (magic_to_group_map.find(magic) != magic_to_group_map.end())
+            continue;
+
+        magic_to_group_map[magic] = group;
+    }
+}
+
+void halo_2_vista_parser::parse_tags()
+{
+    long tag_table_offset = header->meta_offset + tags_header->tag_table_offset;
+    long tag_count = tags_header->number_of_tags;
+    all_tags.resize(tag_count);
+
+    long file_table_index_offset = header->file_table_index_offset;
+    long file_table_offset = header->file_table_offset;
+    file_names.resize(tag_count);
+
+    for (int i = 0; i < tag_count; i++)
+    {
+        long tag_offset = tag_table_offset + i * tag_element_size;
+        s_tag_element* tag = reinterpret_cast<s_tag_element*>(cache_buffer + tag_offset);
+        all_tags[i] = tag;
+
+        register_tag(tag);
+
+        // file name
+        register_string(file_names, i, file_table_index_offset, file_table_offset);
+    }
+}
+
+void halo_2_vista_parser::parse_string_ids()
+{
+    long string_table_index_offset = header->string_table_index_offset;
+    long string_table_count = header->string_table_count;
+    long string_table_offset = header->string_table_offset;
+    string_ids.resize(string_table_count);
+    for (int i = 0; i < string_table_count; i++)
+    {
+        register_string(string_ids, i, string_table_index_offset, string_table_offset);
+    }
+}
+
+void halo_2_vista_parser::parse_cache()
+{
+    header = reinterpret_cast<s_file_header*>(cache_buffer);
+    tags_header = reinterpret_cast<s_tag_header*>(cache_buffer + header->meta_offset);
+
+    parse_tag_groups();
+    parse_tags();
+    parse_string_ids();
+}
+
 void halo_2_vista_parser::print()
 {
     std::cout << "--------------------HALO 2 VISTA--------------------\n" << std::endl;
-    s_cache_file_header* header = reinterpret_cast<s_cache_file_header*>(buffer);
-    print_header(header);
+    print_header();
     std::cout << std::endl;
-    s_cache_file_meta_header* meta_header = reinterpret_cast<s_cache_file_meta_header*>(buffer + header->meta_offset);
-    print_tags_header(meta_header);
-    std::cout << std::endl;
-    print_tag_groups(header, meta_header);
-    std::cout << std::endl;
-    print_tag_elements(header, meta_header);
+    print_tags_header();
 }
 
-void halo_2_vista_parser::print_header(s_cache_file_header* header)
+void halo_2_vista_parser::print_header()
 {
     std::cout << "----------CACHE HEADER----------" << std::endl;
     print_hex_dec("Header signature", header->header_signature);
@@ -29,7 +128,7 @@ void halo_2_vista_parser::print_header(s_cache_file_header* header)
     print_hex_dec("String block offset", header->string_block_offset);
     print_hex_dec("String table count", header->string_table_count);
     print_hex_dec("String table size", header->string_table_size);
-    print_hex_dec("String index table offset", header->string_index_table_offset);
+    print_hex_dec("String index table offset", header->string_table_index_offset);
     print_hex_dec("String table offset", header->string_table_offset);
     print_thing("Internal name", header->internal_name);
     print_thing("Scenario name", header->scenario_name);
@@ -42,61 +141,16 @@ void halo_2_vista_parser::print_header(s_cache_file_header* header)
     print_hex_dec("Checksum", header->checksum);
 }
 
-void halo_2_vista_parser::print_tags_header(s_cache_file_meta_header* meta_header)
+void halo_2_vista_parser::print_tags_header()
 {
     std::cout << "----------META HEADER----------" << std::endl;
-    print_hex_dec("Tag group table offset", meta_header->tag_group_table_offset);
-    print_hex_dec("Number of tag groups", meta_header->number_of_tag_groups);
-    print_hex_dec("Tag table offset", meta_header->tag_table_offset);
-    print_thing("Scenario datum index", meta_header->scenario_datum_index.index);
-    print_thing("Scenario datum identifier", meta_header->scenario_datum_index.identifier);
-    print_thing("Map globals datum index", meta_header->map_globals_datum_index.index);
-    print_thing("Map globals datum identifier", meta_header->map_globals_datum_index.identifier);
-    print_hex_dec("Number of tags", meta_header->number_of_tags);
-    print_hex_dec("Magic", meta_header->magic);
-}
-
-void halo_2_vista_parser::print_tag_groups(s_cache_file_header* header, s_cache_file_meta_header* meta_header)
-{
-    std::cout << "----------TAG GROUPS----------" << std::endl;
-    long group_table_offset = header->meta_offset + meta_header->tag_group_table_offset;
-    long group_num = meta_header->number_of_tag_groups;
-
-    std::map<int, s_cache_file_tag_group_element> tag_group_map;
-
-    std::cout << "Reading " << group_num << " tag groups... ";
-    for (int i = 0; i < group_num; i++)
-    {
-        long offset = group_table_offset + (i * 0xC);
-        //std::cout << "=> TAG GROUP OFFSET " << std::hex << offset << std::endl;
-
-        s_cache_file_tag_group_element* tag_group = reinterpret_cast<s_cache_file_tag_group_element*>(buffer + offset);
-        tag_group_map.insert(std::pair<int, s_cache_file_tag_group_element>(tag_group->magic, *tag_group));
-
-        //print_hex_dec("Magic", tag_group->magic);
-        //print_hex_dec("Parent magic", tag_group->parent_magic);
-        //print_hex_dec("Grandparent magic", tag_group->grandparent_magic);
-    }
-    std::cout << "Done!" << std::endl;
-}
-
-void halo_2_vista_parser::print_tag_elements(s_cache_file_header* header, s_cache_file_meta_header* meta_header)
-{
-    std::cout << "----------TAG ELEMENTS----------" << std::endl;
-
-    long tag_num = meta_header->number_of_tags;
-    long tag_table_offset = header->meta_offset + meta_header->tag_table_offset;
-
-    std::vector<s_cache_file_tag_element> tags(tag_num);
-
-    std::cout << "Reading " << tag_num << " tags... ";
-    for (int i = 0; i < tag_num; i++)
-    {
-        long offset = tag_table_offset + (i * 0x10);
-        // std::cout << "=> TAG ELEMENT OFFSET " << std::hex << offset << std::endl;
-
-        s_cache_file_tag_element* tag = reinterpret_cast<s_cache_file_tag_element*>(buffer + offset);
-        tags[i] = *tag;
-    }
-    std::cout << "Done!" << std::endl;
+    print_hex_dec("Tag group table offset", tags_header->tag_group_table_offset);
+    print_hex_dec("Number of tag groups", tags_header->number_of_tag_groups);
+    print_hex_dec("Tag table offset", tags_header->tag_table_offset);
+    print_thing("Scenario datum index", tags_header->scenario_datum_index.index);
+    print_thing("Scenario datum identifier", tags_header->scenario_datum_index.identifier);
+    print_thing("Map globals datum index", tags_header->map_globals_datum_index.index);
+    print_thing("Map globals datum identifier", tags_header->map_globals_datum_index.identifier);
+    print_hex_dec("Number of tags", tags_header->number_of_tags);
+    print_magic("Magic", tags_header->magic);
 }

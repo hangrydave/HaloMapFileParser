@@ -69,6 +69,20 @@ void utilities::print_thing(const string& label, float data)
     printf("%-40s%-21s\n", label.c_str(), std::to_string(data).c_str());
 }
 
+void utilities::print_magic(const string& label, long magic)
+{
+    std::stringstream ss;
+
+    ss.str(std::string());
+    ss.clear();
+    ss << "0x" << std::hex << magic;
+    string hex_num = ss.str();
+
+    string text = utilities::hex_to_string(magic);
+
+    printf("%-40s%-21s%-7s\n", label.c_str(), hex_num.c_str(), text.c_str());
+}
+
 bool utilities::create_directory(const string& path)
 {
     return fs::create_directory(path);
@@ -133,6 +147,16 @@ void utilities::write_some_chars(const string& path, const char* data, const int
         output << data[i];
     }
     output.close();
+}
+
+int utilities::read_int(const char* buffer, long offset)
+{
+    int num = 0;
+    num += (buffer[offset] & 0xff);
+    num += ((buffer[offset + 1] & 0xff) << 8);
+    num += ((buffer[offset + 2] & 0xff) << 16);
+    num += ((buffer[offset + 3] & 0xff) << 24);
+    return num;
 }
 
 string utilities::read_string(const char* buffer, long offset)

@@ -12,7 +12,7 @@ int main()
     string halo1ce_path = "D:/Program Files (x86)/Microsoft Games/Halo Custom Edition/maps/";
     string halo2v_path = "D:/Games/Halo 2 Project Cartographer/maps/";
 
-    string path = halo1ce_path + "bloodgulch.map";
+    string path = halo2v_path + "coagulation.map";
 
     fstream map_file(path, ios::in | ios::binary);
 
@@ -25,13 +25,13 @@ int main()
     char* buffer = new char[length];
     map_file.read(buffer, length);
 
-    halo_1_ce_parser h1_parser(map_file, buffer);
-    h1_parser.print();
+    //halo_1_ce_parser h1_parser(map_file, buffer);
+    //h1_parser.print();
 
-    cout << "\n\n\n";
+    //cout << "\n\n\n";
 
-    //halo_2_vista_parser h2_parser(buffer);
-    //h2_parser.print();
+    halo_2_vista_parser h2_parser(buffer);
+    h2_parser.print();
 
     return 0;
 }
