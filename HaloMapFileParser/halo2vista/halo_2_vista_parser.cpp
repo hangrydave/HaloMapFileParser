@@ -90,6 +90,7 @@ void halo_2_vista_parser::parse_tags()
     create_directory("tags");
     for (int i = 0; i < tag_count; i++)
     {
+        // TODO: tag block implementation
         long tag_offset = tag_table_offset + i * tag_element_size;
         s_tag_element* tag_element = reinterpret_cast<s_tag_element*>(cache_buffer + tag_offset);
 
@@ -98,10 +99,17 @@ void halo_2_vista_parser::parse_tags()
 
         // extract tags
         string full_path = "tags\\" + file_path + "." + tag->group_name;
-        if (file_exists(full_path))
-            continue;
+        if (!file_exists(full_path))
+            write_to_file(full_path, tag->bytes, tag->data_length);
 
-        write_to_file(full_path, tag->bytes, tag->data_length);
+        if (tag->group_name.compare("bitm") == 0)
+        {
+            s_bitm* bitmap = reinterpret_cast<s_bitm*>(tag->bytes);
+            long file_offset = get_tag_file_offset(tag_element);
+            // bitmaps tag block is here for bitmap coag_ring
+            long tag_block_address = file_offset + tag->data_length;
+            bool hmee = true;
+        }
     }
 }
 

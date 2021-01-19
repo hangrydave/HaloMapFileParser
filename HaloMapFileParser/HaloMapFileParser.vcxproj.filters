@@ -41,5 +41,8 @@
     <ClInclude Include="halo2vista\tag_structs\bitmaps.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="halo2vista\tag_structs\layouts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
