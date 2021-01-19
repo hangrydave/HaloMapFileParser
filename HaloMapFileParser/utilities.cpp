@@ -83,6 +83,11 @@ void utilities::print_magic(const string& label, long magic)
     printf("%-40s%-21s%-7s\n", label.c_str(), hex_num.c_str(), text.c_str());
 }
 
+bool utilities::file_exists(const string& path)
+{
+    return fs::exists(path);
+}
+
 bool utilities::create_directory(const string& path)
 {
     return fs::create_directory(path);
@@ -101,11 +106,29 @@ void utilities::create_file(const string& path)
     output.close();
 }
 
-void utilities::write_to_file(const string& path, const char(&bytes)[])
+void utilities::write_to_file(const string& path, const char* bytes, int count)
 {
+    string parent_directory = "";
+    string file_name = "";
+    for (int i = path.size() - 1; i >= 0; i--)
+    {
+        char c = path[i];
+        if (c == '\\')
+        {
+            parent_directory = path.substr(0, i);
+            break;
+        }
+        file_name = c + file_name;
+    }
+
+    fs::create_directories(parent_directory);
+
     std::ofstream output;
-    output.open(path);
-    output << bytes;
+    output.open(path, std::ios::binary);
+    for (int i = 0; i < count; i++)
+    {
+        output << bytes[i];
+    }
     output.close();
 }
 
@@ -147,6 +170,16 @@ void utilities::write_some_chars(const string& path, const char* data, const int
         output << data[i];
     }
     output.close();
+}
+
+char* utilities::read_bytes(const char* buffer, long offset, int count)
+{
+    char* result = new char[count];
+    for (int i = 0; i < count; i++)
+    {
+        result[i] = buffer[offset + i];
+    }
+    return result;
 }
 
 int utilities::read_int(const char* buffer, long offset)

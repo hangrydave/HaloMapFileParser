@@ -23,7 +23,7 @@ string get_tag_name(const fs::path& path)
 
 int main()
 {
-    string dir_path = fs::current_path().string() + "\\tagdefs\\Halo1\\";
+    string dir_path = fs::current_path().string() + "\\tagdefs\\Halo2\\";
 
     for (auto& file : fs::directory_iterator(dir_path))
     {
@@ -50,6 +50,9 @@ int main()
                 reading_size = true;
                 current_word.clear();
             }
+
+            if (c == '_')
+                c = '*';
 
             if (c == ' ')
                 current_word.clear();

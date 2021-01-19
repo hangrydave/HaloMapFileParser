@@ -10,24 +10,39 @@ halo_2_vista_parser::~halo_2_vista_parser()
 {
 }
 
-void halo_2_vista_parser::register_tag(s_tag_element* tag)
+halo_2_vista_parser::s_tag* halo_2_vista_parser::register_tag(s_tag_element* tag_element, const string& file_name)
 {
+    string group_name = hex_to_string(tag_element->tag_group_magic);
+    long data_offset = get_tag_file_offset(tag_element);
+    int data_length = tag_size_map[group_name];
+    char* bytes = read_bytes(cache_buffer, data_offset, data_length);
+
+    s_tag* tag = new s_tag
+    {
+        tag_element->tag_group_magic,
+        group_name,
+        tag_element->datum_index,
+        tag_element->offset,
+        file_name,
+        data_offset,
+        data_length,
+        bytes
+    };
+
     short datum_index = tag->datum_index.index;
-    if (datum_to_tag_map.find(datum_index) != datum_to_tag_map.end())
-        return;
+    if (datum_to_tag_map.find(datum_index) == datum_to_tag_map.end())
+        datum_to_tag_map[datum_index] = tag;
 
-    // datum map
-    datum_to_tag_map[datum_index] = tag;
-
-    long group_magic = tag->tag_group_magic;
+    long group_magic = tag_element->tag_group_magic;
     if (magic_to_tags_map.find(group_magic) == magic_to_tags_map.end())
-        magic_to_tags_map[group_magic] = new std::vector<s_tag_element*>();
+        magic_to_tags_map[group_magic] = new std::vector<s_tag*>();
 
-    // group magic -> tags map
     magic_to_tags_map[group_magic]->push_back(tag);
+
+    return tag;
 }
 
-void halo_2_vista_parser::register_string(std::vector<string>& string_vector, int index, int table_index_offset, int table_offset)
+string halo_2_vista_parser::register_string(std::vector<string>& string_vector, int index, int table_index_offset, int table_offset)
 {
     int string_offset_offset = table_index_offset + index * 4;
     int string_offset = read_int(cache_buffer, string_offset_offset);
@@ -35,6 +50,8 @@ void halo_2_vista_parser::register_string(std::vector<string>& string_vector, in
         string_vector[index] = "";
     else
         string_vector[index] = read_string(cache_buffer, table_offset + string_offset);
+
+    return string_vector[index];
 }
 
 long halo_2_vista_parser::get_tag_file_offset(s_tag_element* tag)
@@ -70,16 +87,21 @@ void halo_2_vista_parser::parse_tags()
     long file_table_offset = header->file_table_offset;
     file_names.resize(tag_count);
 
+    create_directory("tags");
     for (int i = 0; i < tag_count; i++)
     {
         long tag_offset = tag_table_offset + i * tag_element_size;
-        s_tag_element* tag = reinterpret_cast<s_tag_element*>(cache_buffer + tag_offset);
-        all_tags[i] = tag;
+        s_tag_element* tag_element = reinterpret_cast<s_tag_element*>(cache_buffer + tag_offset);
 
-        register_tag(tag);
+        string file_path = register_string(file_names, i, file_table_index_offset, file_table_offset);
+        s_tag* tag = register_tag(tag_element, file_path);
 
-        // file name
-        register_string(file_names, i, file_table_index_offset, file_table_offset);
+        // extract tags
+        string full_path = "tags\\" + file_path + "." + tag->group_name;
+        if (file_exists(full_path))
+            continue;
+
+        write_to_file(full_path, tag->bytes, tag->data_length);
     }
 }
 
