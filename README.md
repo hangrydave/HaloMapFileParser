@@ -1,5 +1,4 @@
 This is a program I'm writing to learn more about how the Blam engine tag resource system works.
-At this point, I've only tested Halo Custom Edition levels.
 
 ## Handy resources:
 
