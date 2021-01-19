@@ -29,7 +29,7 @@ halo_2_vista_parser::s_tag* halo_2_vista_parser::register_tag(s_tag_element* tag
         bytes
     };
 
-    short datum_index = tag->datum_index.index;
+    /*short datum_index = tag->datum_index.index;
     if (datum_to_tag_map.find(datum_index) == datum_to_tag_map.end())
         datum_to_tag_map[datum_index] = tag;
 
@@ -37,7 +37,7 @@ halo_2_vista_parser::s_tag* halo_2_vista_parser::register_tag(s_tag_element* tag
     if (magic_to_tags_map.find(group_magic) == magic_to_tags_map.end())
         magic_to_tags_map[group_magic] = new std::vector<s_tag*>();
 
-    magic_to_tags_map[group_magic]->push_back(tag);
+    magic_to_tags_map[group_magic]->push_back(tag);*/
 
     return tag;
 }

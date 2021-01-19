@@ -34,8 +34,9 @@ private:
     s_file_header* header;
     s_tag_header* tags_header;
     std::map<int, s_tag_group_element*> magic_to_group_map;
-    std::map<int, s_tag*> datum_to_tag_map;
-    std::map<int, std::vector<s_tag*>*> magic_to_tags_map;
+    // commenting the following 2 lines out until i need them
+    //std::map<int, s_tag*> datum_to_tag_map;
+    //std::map<int, std::vector<s_tag*>*> magic_to_tags_map;
     std::vector<s_tag*> all_tags;
     std::vector<string> file_names;
     std::vector<string> string_ids;
