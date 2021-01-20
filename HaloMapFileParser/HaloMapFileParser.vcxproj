@@ -142,12 +142,16 @@
   <ItemGroup>
     <ClCompile Include="halo1ce\halo_1_ce_parser.cpp" />
     <ClCompile Include="halo2vista\halo_2_vista_parser.cpp" />
+    <ClCompile Include="halo2vista\tags\tag.cpp" />
     <ClCompile Include="halo_map_parser.cpp" />
     <ClCompile Include="utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="halo1ce\halo_1_ce_parser.h" />
     <ClInclude Include="halo2vista\halo_2_vista_parser.h" />
+    <ClInclude Include="halo2vista\tags\definitions\tag_sizes.h" />
+    <ClInclude Include="halo2vista\tags\fields.h" />
+    <ClInclude Include="halo2vista\tags\tag.h" />
     <ClInclude Include="halo2vista\tag_structs\bitmaps.h" />
     <ClInclude Include="halo2vista\tag_structs\layouts.h" />
     <ClInclude Include="utilities.h" />

@@ -10,38 +10,6 @@ halo_2_vista_parser::~halo_2_vista_parser()
 {
 }
 
-halo_2_vista_parser::s_tag* halo_2_vista_parser::register_tag(s_tag_element* tag_element, const string& file_name)
-{
-    string group_name = hex_to_string(tag_element->tag_group_magic);
-    long data_offset = get_tag_file_offset(tag_element);
-    int data_length = tag_size_map[group_name];
-    char* bytes = read_bytes(cache_buffer, data_offset, data_length);
-
-    s_tag* tag = new s_tag
-    {
-        tag_element->tag_group_magic,
-        group_name,
-        tag_element->datum_index,
-        tag_element->offset,
-        file_name,
-        data_offset,
-        data_length,
-        bytes
-    };
-
-    /*short datum_index = tag->datum_index.index;
-    if (datum_to_tag_map.find(datum_index) == datum_to_tag_map.end())
-        datum_to_tag_map[datum_index] = tag;
-
-    long group_magic = tag_element->tag_group_magic;
-    if (magic_to_tags_map.find(group_magic) == magic_to_tags_map.end())
-        magic_to_tags_map[group_magic] = new std::vector<s_tag*>();
-
-    magic_to_tags_map[group_magic]->push_back(tag);*/
-
-    return tag;
-}
-
 string halo_2_vista_parser::register_string(std::vector<string>& string_vector, int index, int table_index_offset, int table_offset)
 {
     int string_offset_offset = table_index_offset + index * 4;
@@ -95,7 +63,33 @@ void halo_2_vista_parser::parse_tags()
         s_tag_element* tag_element = reinterpret_cast<s_tag_element*>(cache_buffer + tag_offset);
 
         string file_path = register_string(file_names, i, file_table_index_offset, file_table_offset);
-        s_tag* tag = register_tag(tag_element, file_path);
+
+        string group_name = hex_to_string(tag_element->tag_group_magic);
+        long data_offset = get_tag_file_offset(tag_element);
+        int data_length = tag_size_map[group_name];
+        char* bytes = read_bytes(cache_buffer, data_offset, data_length);
+
+        s_tag* tag = new s_tag
+        {
+            tag_element->tag_group_magic,
+            group_name,
+            tag_element->datum_index,
+            tag_element->offset,
+            file_path,
+            data_offset,
+            data_length,
+            bytes
+        };
+
+        /*short datum_index = tag->datum_index.index;
+        if (datum_to_tag_map.find(datum_index) == datum_to_tag_map.end())
+            datum_to_tag_map[datum_index] = tag;
+
+        long group_magic = tag_element->tag_group_magic;
+        if (magic_to_tags_map.find(group_magic) == magic_to_tags_map.end())
+            magic_to_tags_map[group_magic] = new std::vector<s_tag*>();
+
+        magic_to_tags_map[group_magic]->push_back(tag);*/
 
         // extract tags
         string full_path = "tags\\" + file_path + "." + tag->group_name;

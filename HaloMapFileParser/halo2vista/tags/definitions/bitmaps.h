@@ -1,6 +1,6 @@
-#include "layouts.h"
-
 #pragma once
+
+#include "layouts.h"
 
 struct s_bitm
 {
