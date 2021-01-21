@@ -41,20 +41,16 @@
     <ClInclude Include="halo2vista\halo_2_vista_parser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="halo2vista\tag_structs\bitmaps.h">
+    <ClInclude Include="halo2vista\tags\definitions\bitmaps.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="halo2vista\tag_structs\layouts.h">
+    <ClInclude Include="halo2vista\tags\definitions\layouts.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="halo2vista\tags\tag.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="halo2vista\tags\definitions\tag_sizes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="halo2vista\tags\fields.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
