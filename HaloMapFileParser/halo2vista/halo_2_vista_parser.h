@@ -2,10 +2,11 @@
 
 #include "../utilities.h"
 #include "tags/definitions/bitmaps.h"
-#include "tags/definitions/layouts.h"
+#include "tags/definitions/tag_layouts.h"
 #include <iostream>
 #include <map>
 #include <vector>
+#include <string>
 
 using namespace utilities;
 
@@ -18,7 +19,7 @@ public:
     void print();
 
 private:
-    struct s_tag
+    /*struct s_tag
     {
         long group_magic;
         string group_name;
@@ -28,7 +29,7 @@ private:
         long data_offset;
         long data_length;
         char* bytes;
-    };
+    };*/
 
     char* cache_buffer;
 
@@ -38,16 +39,16 @@ private:
     // commenting the following 2 lines out until i need them
     //std::map<int, s_tag*> datum_to_tag_map;
     //std::map<int, std::vector<s_tag*>*> magic_to_tags_map;
-    std::vector<s_tag*> all_tags;
-    std::vector<string> file_names;
-    std::vector<string> string_ids;
+    //std::vector<s_tag*> all_tags;
+    std::vector<std::string> file_names;
+    std::vector<std::string> string_ids;
 
     const int header_size = sizeof(s_file_header);
     const int tags_header_size = sizeof(s_tag_header);
     const int tag_group_element_size = sizeof(s_tag_group_element);
     const int tag_element_size = sizeof(s_tag_element);
 
-    string register_string(std::vector<string>& string_vector, int index, int table_index_offset, int table_offset);
+    std::string register_string(std::vector<std::string>& string_vector, int index, int table_index_offset, int table_offset);
     long get_tag_file_offset(s_tag_element* tag);
 
     void parse_tag_groups();

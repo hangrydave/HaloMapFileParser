@@ -1,7 +1,12 @@
-#pragma once
+#include "fields/tag_collection.h"
 
-#include "layouts.h"
+namespace tag_definitions
+{
+    extern tag_collection* bitmap_group;
+}
 
+
+/*
 struct s_bitm
 {
     short type;
@@ -32,3 +37,4 @@ struct s_bitm
     uint8_t overlap;
     uint8_t color_subsampling;
 };
+*/

@@ -30,6 +30,318 @@
     <ClCompile Include="halo2vista\tags\tag.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="halo2vista\tags\tag_registry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\bitmaps.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\fields\invalid_type_exception.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\fields\tag_collection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\fields\tag_def_garbo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\fields\tag_field.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\____.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\_cen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\_eap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\_ehi.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\_fx_.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\_igh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\_ipd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\_qip.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\_rea.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\_sce.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\adlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\ai__.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\ant!.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\bipd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\bitm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\bloc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\bsdt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\char.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\cin_.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\clu_.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\clwd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\coll.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\colo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\cont.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\crea.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\ctrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\dc_s.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\dec_.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\deca.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\DECR.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\dgr_.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\effe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\egor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\eqip.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\fog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\foot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\fpch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\garb.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\gldf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\goof.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\hlmt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\hsc_.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\hudg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\itmc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\jmad.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\jpt!.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\lens.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\lifi.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\ligh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\lsnd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\ltmp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\mach.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\matg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\mcsr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\mdlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\MGS2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\mode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\mulg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\nhdt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\phmo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\phys.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\pmov.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\pphy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\proj.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\prt3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\PRTM.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\sbsp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\scen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\scnr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\sfx+.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\shad.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\sily.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\skin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\sky.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\sncl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\snd!.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\snde.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\snmx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\spas.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\spk!.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\ssce.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\sslt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\stem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\styl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\tdtl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\trak.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\trg_.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\udlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\ugh!.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\unic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\vehc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\vehi.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\vrtx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\weap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\weat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\wgit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\wgtz.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2vista\tags\definitions\groups\wigl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="utilities.h">
@@ -41,16 +353,323 @@
     <ClInclude Include="halo2vista\halo_2_vista_parser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="halo2vista\tags\definitions\bitmaps.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="halo2vista\tags\definitions\layouts.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="halo2vista\tags\tag.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="halo2vista\tags\fields.h">
+    <ClInclude Include="halo2vista\tags\tag_registry.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\bitmaps.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\tag_layouts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\fields\invalid_type_exception.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\fields\tag_collection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\fields\tag_def_garbo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\fields\tag_field.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\____.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\_cen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\_eap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\_ehi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\_fx_.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\_igh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\_ipd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\_qip.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\_rea.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\_sce.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\adlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\ai__.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\ant!.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\bipd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\bitm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\bloc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\bsdt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\char.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\cin_.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\clu_.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\clwd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\coll.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\colo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\cont.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\crea.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\ctrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\dc_s.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\dec_.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\deca.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\DECR.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\dgr_.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\effe.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\egor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\eqip.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\fog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\foot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\fpch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\garb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\gldf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\goof.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\hlmt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\hsc_.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\hudg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\itmc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\jmad.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\jpt!.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\lens.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\lifi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\ligh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\lsnd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\ltmp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\mach.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\matg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\mcsr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\mdlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\MGS2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\mode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\mulg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\nhdt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\phmo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\phys.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\pmov.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\pphy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\proj.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\prt3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\PRTM.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\sbsp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\scen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\scnr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\sfx+.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\shad.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\sily.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\skin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\sky.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\sncl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\snd!.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\snde.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\snmx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\spas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\spk!.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\ssce.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\sslt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\stem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\styl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\tdtl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\trak.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\trg_.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\udlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\ugh!.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\unic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\vehc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\vehi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\vrtx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\weap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\weat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\wgit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\wgtz.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2vista\tags\definitions\groups\wigl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,5 +1,7 @@
 #include "halo_2_vista_parser.h"
 
+using std::string;
+
 halo_2_vista_parser::halo_2_vista_parser(char* buffer)
 {
     this->cache_buffer = buffer;
@@ -49,7 +51,7 @@ void halo_2_vista_parser::parse_tags()
 {
     long tag_table_offset = header->meta_offset + tags_header->tag_table_offset;
     long tag_count = tags_header->number_of_tags;
-    all_tags.resize(tag_count);
+    //all_tags.resize(tag_count);
 
     long file_table_index_offset = header->file_table_index_offset;
     long file_table_offset = header->file_table_offset;
@@ -69,7 +71,7 @@ void halo_2_vista_parser::parse_tags()
         int data_length = tag_size_map[group_name];
         char* bytes = read_bytes(cache_buffer, data_offset, data_length);
 
-        s_tag* tag = new s_tag
+        /*s_tag* tag = new s_tag
         {
             tag_element->tag_group_magic,
             group_name,
@@ -79,7 +81,7 @@ void halo_2_vista_parser::parse_tags()
             data_offset,
             data_length,
             bytes
-        };
+        };*/
 
         /*short datum_index = tag->datum_index.index;
         if (datum_to_tag_map.find(datum_index) == datum_to_tag_map.end())
@@ -92,17 +94,17 @@ void halo_2_vista_parser::parse_tags()
         magic_to_tags_map[group_magic]->push_back(tag);*/
 
         // extract tags
-        string full_path = "tags\\" + file_path + "." + tag->group_name;
+        string full_path = "tags\\" + file_path + "." + group_name;
         if (!file_exists(full_path))
-            write_to_file(full_path, tag->bytes, tag->data_length);
+            write_to_file(full_path, bytes, data_length);
 
-        if (tag->group_name.compare("bitm") == 0)
+        if (group_name.compare("bitm") == 0)
         {
-            s_bitm* bitmap = reinterpret_cast<s_bitm*>(tag->bytes);
+            /*s_bitm* bitmap = reinterpret_cast<s_bitm*>(tag->bytes);
             long file_offset = get_tag_file_offset(tag_element);
             // bitmaps tag block is here for bitmap coag_ring
             long tag_block_address = file_offset + tag->data_length;
-            bool hmee = true;
+            bool hmee = true;*/
         }
     }
 }

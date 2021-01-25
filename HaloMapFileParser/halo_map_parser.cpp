@@ -2,13 +2,19 @@
 #include <fstream>
 #include "halo1ce/halo_1_ce_parser.h"
 #include "halo2vista/halo_2_vista_parser.h"
-
 #include "utilities.h"
+#include "halo2vista/tags/tag_registry.h"
 
 using namespace std;
 
 int main()
 {
+    tag_registry registry;
+    registry.register_tag_definitions();
+    tag_collection* group = registry["ayyohhhhh"];
+    auto field = group->operator[]("eeeewa");
+    auto tag = field->operator[]("WHAT THE FUCK");
+
     string halo1ce_path = "D:/Program Files (x86)/Microsoft Games/Halo Custom Edition/maps/";
     string halo2v_path = "D:/Games/Halo 2 Project Cartographer/maps/";
 

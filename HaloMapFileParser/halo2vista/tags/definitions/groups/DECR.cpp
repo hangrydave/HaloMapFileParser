@@ -1,0 +1,100 @@
+#include "DECR.h"
+
+using namespace tag_definitions;
+
+namespace tag_definitions
+{
+	tag_collection* DECR_group = new tag_collection(
+	"DECR",
+	{
+		
+		block_tag("Shaders",
+		{
+			undefined_tag("Shader", 9999),
+		}),
+		long_tag("Lighting Min Scale"),
+		long_tag("Lighting Max Scale"),
+		block_tag("Classes",
+		{
+			undefined_tag("Name", 9999),
+			undefined_tag("Type", 9999),
+			long_tag("Scale"),
+			block_tag("Permutations",
+			{
+				undefined_tag("Name", 9999),
+				short_tag("Shader Index"),
+				undefined_tag("Flags", 9999),
+				byte_tag("Fade Distance"),
+				short_tag("Index"),
+				short_tag("Distribution Weight"),
+				long_tag("Scale"),
+				long_tag("...To"),
+				undefined_tag("Tint 1 A", 9999),
+				undefined_tag("Tint 1 R", 9999),
+				undefined_tag("Tint 1 G", 9999),
+				undefined_tag("Tint 1 B", 9999),
+				undefined_tag("Tint 2 A", 9999),
+				undefined_tag("Tint 2 R", 9999),
+				undefined_tag("Tint 2 G", 9999),
+				undefined_tag("Tint 2 B", 9999),
+				long_tag("Base Map Tint Percentage"),
+				long_tag("Lightmap Tint Percentage"),
+				long_tag("Wind Scale"),
+			}),
+		}),
+		block_tag("Models",
+		{
+			undefined_tag("Model Name", 9999),
+			short_tag("Index Start"),
+			short_tag("Index Count"),
+		}),
+		block_tag("Raw Vertices",
+		{
+			long_tag("X"),
+			long_tag("Y"),
+			long_tag("Z"),
+			undefined_tag("Normal i", 9999),
+			undefined_tag("Normal j", 9999),
+			undefined_tag("Normal k", 9999),
+			undefined_tag("Tangent i", 9999),
+			undefined_tag("Tangent j", 9999),
+			undefined_tag("Tangent k", 9999),
+			undefined_tag("Binormal i", 9999),
+			undefined_tag("Binormal j", 9999),
+			undefined_tag("Binormal k", 9999),
+			long_tag("U"),
+			long_tag("V"),
+		}),
+		block_tag("Indices",
+		{
+			short_tag("Index"),
+		}),
+		block_tag("Cached Data",
+		{
+			undefined_tag("Vertex Buffer", 9999),
+		}),
+		long_tag("Resource Block Offset"),
+		undefined_tag("Resource Block Size", 9999),
+		undefined_tag("Section Data Size", 9999),
+		undefined_tag("Resource Data Size", 9999),
+		block_tag("Resources",
+		{
+			byte_tag("Type"),
+			byte_tag("Unknown"),
+			short_tag("Unknown"),
+			short_tag("Primary Locator"),
+			short_tag("Secondary Locator"),
+			undefined_tag("Resource Data Size", 9999),
+			undefined_tag("Resource Data Offset", 9999),
+		}),
+		tagref_tag("Owner Tag"),
+		short_tag("Owner Tag Section Offset"),
+		short_tag("Unknown"),
+		long_tag("Unknown"),
+		undefined_tag("Unknown", 9999),
+		undefined_tag("Unknown", 9999),
+		undefined_tag("Unknown", 9999),
+		undefined_tag("Unknown", 9999),
+		undefined_tag("Unknown", 9999),
+	});
+};

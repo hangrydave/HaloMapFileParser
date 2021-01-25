@@ -1,3 +1,4 @@
+#include <string>
 #include "../utilities.h"
 
 using namespace utilities;
@@ -102,11 +103,11 @@ private:
 
     void export_tags();
 
-    string get_readable_file_version(long version);
-    string get_readable_scenario_type(short type);
+    std::string get_readable_file_version(long version);
+    std::string get_readable_scenario_type(short type);
 
     // the following numbers were taken from Assembly's tag definitions
-    std::map<string, unsigned int> tag_size_map
+    std::map<std::string, unsigned int> tag_size_map
     {
         { "actr", 1272 },
         { "actv", 568 },

@@ -1,5 +1,7 @@
 #include "halo_1_ce_parser.h"
 
+using std::string;
+
 #define tag_list_t std::vector<s_cache_file_tag_instance*>
 #define tag_group_map_t std::map<int, std::vector<s_cache_file_tag_instance*>>
 

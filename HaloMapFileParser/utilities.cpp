@@ -1,5 +1,7 @@
 #include "utilities.h"
 
+using std::string;
+
 void utilities::print_hex_dec(const string& label, long data)
 {
     std::stringstream ss;

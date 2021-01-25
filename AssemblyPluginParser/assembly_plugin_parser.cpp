@@ -2,6 +2,8 @@
 #include <string>
 #include <filesystem>
 #include <fstream>
+#include <vector>
+#include "version1.h"
 
 namespace fs = std::filesystem;
 
@@ -24,15 +26,25 @@ string get_tag_name(const fs::path& path)
 int main()
 {
     string dir_path = fs::current_path().string() + "\\tagdefs\\Halo2\\";
+    string output_dir_path = fs::current_path().string() + "\\tagdefs\\Halo2Output\\";
 
     for (auto& file : fs::directory_iterator(dir_path))
     {
         fs::path file_path = file.path();
         string tag_name = get_tag_name(file_path);
+        std::ifstream input(dir_path + tag_name + ".xml");
+        std::ofstream h_output(output_dir_path + tag_name + ".h");
+        std::ofstream cpp_output(output_dir_path + tag_name + ".cpp");
+        
+        version1 shitter_v1(tag_name, input, h_output, cpp_output);
+        shitter_v1.go_ham();
 
-        std::ifstream input(file_path);
+	    h_output.flush();
+        h_output.close();
+        cpp_output.flush();
+        cpp_output.close();
 
-        string line;
+        /*string line;
         std::getline(input, line);
         std::getline(input, line); // get second line
 
@@ -61,6 +73,6 @@ int main()
         }
 
         unsigned int x = std::stoul(current_word, nullptr, 16);
-        std::cout << "{ \"" << tag_name << "\", " << x << " }," << std::endl;
+        std::cout << "{ \"" << tag_name << "\", " << x << " }," << std::endl;*/
     }
 }
