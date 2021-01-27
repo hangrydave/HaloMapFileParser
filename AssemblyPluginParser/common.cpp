@@ -5,6 +5,8 @@ using namespace common;
 
 e_data_type common::get_data_type(const string& xml_type)
 {
+    if (xml_type.compare("plugin") == 0)
+        return group_type;
     if (xml_type.compare("int8") == 0)
         return byte_type;
     if (xml_type.compare("enum8") == 0)
@@ -27,8 +29,14 @@ e_data_type common::get_data_type(const string& xml_type)
         return string_type;
     if (xml_type.compare("tagblock") == 0)
         return tagblock_type;
-    if (xml_type.compare("tagref") == 0)
+    if (xml_type.compare("tagref") == 0 || xml_type.compare("tagRef") == 0)
         return tagref_type;
+    if (xml_type.compare("dataref") == 0 || xml_type.compare("dataRef") == 0)
+        return dataref_type;
+    if (xml_type.compare("vector3") == 0)
+        return vector3_type;
+    if (xml_type.compare("vector4") == 0)
+        return vector4_type;
     //if (xml_type.compare("undefined") == 0)
     return undefined_type;
     //return "WAWAWEEWAH";
@@ -54,6 +62,12 @@ string common::get_tag_type_string(e_data_type data_type)
         return "block_tag";
     case tagref_type:
         return "tagref_tag";
+    case dataref_type:
+        return "dataref_type";
+    case vector3_type:
+        return "vector3_tag";
+    case vector4_type:
+        return "vector4_tag";
     case undefined_type:
     default:
         return "undefined_tag";
@@ -73,13 +87,19 @@ string common::get_data_type_string(e_data_type data_type)
     case long_type:
         return "long";
     case point16_type:
-        return "point16";
+        return "s_point16";
     case string_type:
         return "char";
     case tagblock_type:
-        return "tagblock";
+        return "s_tag_block";
     case tagref_type:
-        return "tagref";
+        return "s_tag_reference";
+    case dataref_type:
+        return "s_data_reference";
+    case vector3_type:
+        return "s_vector3";
+    case vector4_type:
+        return "s_vector4";
     case undefined_type:
     default:
         return "char";
@@ -96,4 +116,29 @@ string common::clean(const string& s)
             cleaned[i] = '_';
     }
     return cleaned;
+}
+
+string common::trim(const string& s)
+{
+    // TODO: as a general thing, I care more about speed than memory usage, so optimize stuff for that
+    int start = -1;
+    for (int i = 0; i < s.size() && start == -1; i++)
+    {
+        char c = s[i];
+        if (c != ' ' && c != '\t')
+            start = i;
+    }
+
+    if (start == -1)
+        return "";
+
+    int end = -1;
+    for (int i = s.size() - 1; i >= 0 && end == -1; i--)
+    {
+        char c = s[i];
+        if (c != ' ' && c != '\t')
+            end = i;
+    }
+
+    return s.substr(start, end + 1 - start);
 }

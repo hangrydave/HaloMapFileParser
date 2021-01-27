@@ -16,7 +16,7 @@ namespace xml_garbo
     {
         std::string type;
         bool is_end = false;
-        bool unknown = false;
+        bool is_unknown = false;
         s_element elements[5];
     };
 
@@ -28,4 +28,6 @@ namespace xml_garbo
     };
 
     s_line* parse_xml_line(std::string line);
+    bool should_skip_line(s_line* line_data);
+    const std::string& get_value(const s_line* line_data, const std::string& key);
 };

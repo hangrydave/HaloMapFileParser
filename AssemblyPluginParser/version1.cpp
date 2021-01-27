@@ -45,25 +45,7 @@ void version1::go_ham()
         if (line_data == NULL)
             continue;
 
-        if (line_data->type.compare("?xml") == 0)
-            continue;
-
-        if (line_data->type.compare("plugin") == 0)
-            continue;
-
-        if (line_data->type.compare("revisions") == 0)
-            continue;
-
-        if (line_data->type.compare("revision") == 0)
-            continue;
-
-        if (line_data->type.compare("comment") == 0)
-            continue;
-
-        if (line_data->type.compare("option") == 0)
-            continue;
-
-        if (line_data->type.compare("bit") == 0)
+        if (should_skip_line(line_data))
             continue;
 
         string tag_type = get_tag_type_string(get_data_type(line_data->type));

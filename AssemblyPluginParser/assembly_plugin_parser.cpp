@@ -1,9 +1,8 @@
 #include <iostream>
 #include <string>
 #include <filesystem>
-#include <fstream>
-#include <vector>
 #include "version1.h"
+#include "version2.h"
 
 namespace fs = std::filesystem;
 
@@ -27,52 +26,37 @@ int main()
 {
     string dir_path = fs::current_path().string() + "\\tagdefs\\Halo2\\";
     string output_dir_path = fs::current_path().string() + "\\tagdefs\\Halo2Output\\";
+    std::ofstream include_output(output_dir_path + "tag_definitions.h");
+
+    include_output << "#pragma once"
+        << "\n\n";
 
     for (auto& file : fs::directory_iterator(dir_path))
     {
         fs::path file_path = file.path();
         string tag_name = get_tag_name(file_path);
+
         std::ifstream input(dir_path + tag_name + ".xml");
+
+        tag_name += "_tag";
+
+        include_output << "#include \"" << tag_name << ".h\"" << "\n";
         std::ofstream h_output(output_dir_path + tag_name + ".h");
-        std::ofstream cpp_output(output_dir_path + tag_name + ".cpp");
+        //std::ofstream cpp_output(output_dir_path + tag_name + ".cpp");
         
-        version1 shitter_v1(tag_name, input, h_output, cpp_output);
-        shitter_v1.go_ham();
+        // overengineered garbo shitter
+        //version1 shitter_v1(tag_name, input, h_output, cpp_output);
+        //shitter_v1.go_ham();
+
+        // chad struct shitter
+        version2 shitter_v2(tag_name, input, h_output);
+        shitter_v2.go_ham();
 
 	    h_output.flush();
         h_output.close();
-        cpp_output.flush();
-        cpp_output.close();
-
-        /*string line;
-        std::getline(input, line);
-        std::getline(input, line); // get second line
-
-        bool reading_size = false;
-        string current_word;
-        for (int i = 0; i < line.size(); i++)
-        {
-            char c = line[i];
-
-            if (reading_size && c == '"')
-                break;
-
-            if (current_word.compare("baseSize=\"") == 0)
-            {
-                reading_size = true;
-                current_word.clear();
-            }
-
-            if (c == '_')
-                c = '*';
-
-            if (c == ' ')
-                current_word.clear();
-            else
-                current_word += c;
-        }
-
-        unsigned int x = std::stoul(current_word, nullptr, 16);
-        std::cout << "{ \"" << tag_name << "\", " << x << " }," << std::endl;*/
+        //cpp_output.flush();
+        //cpp_output.close();
     }
+    include_output.flush();
+    include_output.close();
 }

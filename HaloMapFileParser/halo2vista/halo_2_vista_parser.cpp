@@ -24,9 +24,9 @@ string halo_2_vista_parser::register_string(std::vector<string>& string_vector, 
     return string_vector[index];
 }
 
-long halo_2_vista_parser::get_tag_file_offset(s_tag_element* tag)
+long halo_2_vista_parser::get_tag_file_offset(long tag_offset)
 {
-    long offset = header->meta_offset + tag->offset - header->meta_offset_mask;
+    long offset = header->meta_offset - header->meta_offset_mask + tag_offset;
     return offset;
 }
 
@@ -47,11 +47,25 @@ void halo_2_vista_parser::parse_tag_groups()
     }
 }
 
+template<typename T>
+std::vector<T*>* halo_2_vista_parser::get_tagblock_data(s_tag_block tag_block)
+{
+    long data_start = get_tag_file_offset(tag_block.pointer);// tag_block.pointer + header->meta_offset - header->meta_offset_mask;
+    std::vector<T*>* data_vec = new std::vector<T*>(tag_block.entry_count);
+    for (int i = 0; i < tag_block.entry_count; i++)
+    {
+        long offset = data_start + (i * sizeof(T));
+        char* bytes = read_bytes(cache_buffer, offset, sizeof(T));
+        T* data = reinterpret_cast<T*>(bytes);
+        data_vec->insert(data_vec->begin() + i, data);
+    }
+    return data_vec;
+}
+
 void halo_2_vista_parser::parse_tags()
 {
     long tag_table_offset = header->meta_offset + tags_header->tag_table_offset;
     long tag_count = tags_header->number_of_tags;
-    //all_tags.resize(tag_count);
 
     long file_table_index_offset = header->file_table_index_offset;
     long file_table_offset = header->file_table_offset;
@@ -60,38 +74,15 @@ void halo_2_vista_parser::parse_tags()
     create_directory("tags");
     for (int i = 0; i < tag_count; i++)
     {
-        // TODO: tag block implementation
         long tag_offset = tag_table_offset + i * tag_element_size;
         s_tag_element* tag_element = reinterpret_cast<s_tag_element*>(cache_buffer + tag_offset);
 
         string file_path = register_string(file_names, i, file_table_index_offset, file_table_offset);
 
         string group_name = hex_to_string(tag_element->tag_group_magic);
-        long data_offset = get_tag_file_offset(tag_element);
+        long data_offset = get_tag_file_offset(tag_element->offset);
         int data_length = tag_size_map[group_name];
         char* bytes = read_bytes(cache_buffer, data_offset, data_length);
-
-        /*s_tag* tag = new s_tag
-        {
-            tag_element->tag_group_magic,
-            group_name,
-            tag_element->datum_index,
-            tag_element->offset,
-            file_path,
-            data_offset,
-            data_length,
-            bytes
-        };*/
-
-        /*short datum_index = tag->datum_index.index;
-        if (datum_to_tag_map.find(datum_index) == datum_to_tag_map.end())
-            datum_to_tag_map[datum_index] = tag;
-
-        long group_magic = tag_element->tag_group_magic;
-        if (magic_to_tags_map.find(group_magic) == magic_to_tags_map.end())
-            magic_to_tags_map[group_magic] = new std::vector<s_tag*>();
-
-        magic_to_tags_map[group_magic]->push_back(tag);*/
 
         // extract tags
         string full_path = "tags\\" + file_path + "." + group_name;
@@ -100,11 +91,12 @@ void halo_2_vista_parser::parse_tags()
 
         if (group_name.compare("bitm") == 0)
         {
-            /*s_bitm* bitmap = reinterpret_cast<s_bitm*>(tag->bytes);
-            long file_offset = get_tag_file_offset(tag_element);
-            // bitmaps tag block is here for bitmap coag_ring
-            long tag_block_address = file_offset + tag->data_length;
-            bool hmee = true;*/
+            // for testing purposes
+            bitm_tag::group* group_tag = reinterpret_cast<bitm_tag::group*>(bytes);
+            auto squences = get_tagblock_data<bitm_tag::squences_block>(group_tag->squences_block);
+            auto bitmaps = get_tagblock_data<bitm_tag::bitmaps_block>(group_tag->bitmaps_block);
+
+            bool hmee = true;
         }
     }
 }

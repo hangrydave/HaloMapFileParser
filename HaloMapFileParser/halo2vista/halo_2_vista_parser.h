@@ -1,8 +1,8 @@
 #pragma once
 
 #include "../utilities.h"
-#include "tags/definitions/bitmaps.h"
 #include "tags/definitions/tag_layouts.h"
+#include "tags/definitions/groups/tag_definitions.h"
 #include <iostream>
 #include <map>
 #include <vector>
@@ -19,27 +19,11 @@ public:
     void print();
 
 private:
-    /*struct s_tag
-    {
-        long group_magic;
-        string group_name;
-        datum_index datum_index;
-        long offset;
-        string file_path;
-        long data_offset;
-        long data_length;
-        char* bytes;
-    };*/
-
     char* cache_buffer;
 
     s_file_header* header;
     s_tag_header* tags_header;
     std::map<int, s_tag_group_element*> magic_to_group_map;
-    // commenting the following 2 lines out until i need them
-    //std::map<int, s_tag*> datum_to_tag_map;
-    //std::map<int, std::vector<s_tag*>*> magic_to_tags_map;
-    //std::vector<s_tag*> all_tags;
     std::vector<std::string> file_names;
     std::vector<std::string> string_ids;
 
@@ -49,14 +33,14 @@ private:
     const int tag_element_size = sizeof(s_tag_element);
 
     std::string register_string(std::vector<std::string>& string_vector, int index, int table_index_offset, int table_offset);
-    long get_tag_file_offset(s_tag_element* tag);
+    long get_tag_file_offset(long tag_offset);
 
     void parse_tag_groups();
+    template<typename T>
+    std::vector<T*>* get_tagblock_data(s_tag_block tag_block);
     void parse_tags();
     void parse_string_ids();
     void parse_cache();
-
-    //void export_tags();
 
     void print_header();
     void print_tags_header();

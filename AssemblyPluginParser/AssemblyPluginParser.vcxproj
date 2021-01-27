@@ -144,11 +144,13 @@
     <ClCompile Include="assembly_plugin_parser.cpp" />
     <ClCompile Include="common.cpp" />
     <ClCompile Include="version1.cpp" />
+    <ClCompile Include="version2.cpp" />
     <ClCompile Include="xml_garbo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h" />
     <ClInclude Include="version1.h" />
+    <ClInclude Include="version2.h" />
     <ClInclude Include="xml_garbo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

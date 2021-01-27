@@ -1,6 +1,6 @@
 #pragma once
 
-struct datum_index
+struct s_datum_index
 {
     short index;
     short identifier;
@@ -60,8 +60,8 @@ struct s_tag_header
     long tag_group_table_offset;                // 0x0
     long number_of_tag_groups;                  // 0x4;
     long tag_table_offset;                      // 0x8;
-    datum_index scenario_datum_index;           // 0xC
-    datum_index map_globals_datum_index;        // 0x10
+    s_datum_index scenario_datum_index;           // 0xC
+    s_datum_index map_globals_datum_index;        // 0x10
     char unknown0[4];                           // 0x14
     long number_of_tags;                        // 0x18
     long magic;                                 // 0x1C
@@ -77,7 +77,7 @@ struct s_tag_group_element
 struct s_tag_element
 {
     long tag_group_magic;       // 0x0
-    datum_index datum_index;    // 0x4
+    s_datum_index datum_index;    // 0x4
     long offset;                // 0x8
     long data_size;             // 0xC
 };
@@ -91,11 +91,35 @@ struct s_tag_block
 struct s_tag_reference
 {
     long group_magic;
-    datum_index datum_index;
+    s_datum_index datum_index;
 };
 
 struct s_data_reference
 {
     long size;
-    unsigned long pointer;
+    long stream_flags;
+    long stream_offset;
+    unsigned long address;
+    long definition;
+};
+
+struct s_point16
+{
+    short x;
+    short y;
+};
+
+struct s_vector3
+{
+    float x;
+    float y;
+    float z;
+};
+
+struct s_vector4
+{
+    float i;
+    float j;
+    float k;
+    float w;
 };
