@@ -39,7 +39,6 @@ private:
 	std::string top_1 = "#include \"../../pch.h\""
 		"\n\n#pragma once"
 		"\n\n#include \"../structures.h\""
-		"\n\n#include \"../../types.h\""
 		"\n\nnamespace ";
 	std::string top_2 = "\n{";
 	std::string bottom = "\n}\n";
