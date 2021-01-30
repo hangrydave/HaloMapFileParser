@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{b159f6d1-932e-4fc9-948b-b32de9d6dcfe}</ProjectGuid>
+    <RootNamespace>Halo2VistaTagDefinitions</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>TagDefinitions</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="groups\tag_definitions.h" />
+    <ClInclude Include="halo2vista\groups\adlg_tag.h" />
+    <ClInclude Include="halo2vista\groups\ai___tag.h" />
+    <ClInclude Include="halo2vista\groups\ant!_tag.h" />
+    <ClInclude Include="halo2vista\groups\bipd_tag.h" />
+    <ClInclude Include="halo2vista\groups\bitm_tag.h" />
+    <ClInclude Include="halo2vista\groups\bloc_tag.h" />
+    <ClInclude Include="halo2vista\groups\bsdt_tag.h" />
+    <ClInclude Include="halo2vista\groups\char_tag.h" />
+    <ClInclude Include="halo2vista\groups\cin__tag.h" />
+    <ClInclude Include="halo2vista\groups\clu__tag.h" />
+    <ClInclude Include="halo2vista\groups\clwd_tag.h" />
+    <ClInclude Include="halo2vista\groups\coll_tag.h" />
+    <ClInclude Include="halo2vista\groups\colo_tag.h" />
+    <ClInclude Include="halo2vista\groups\cont_tag.h" />
+    <ClInclude Include="halo2vista\groups\crea_tag.h" />
+    <ClInclude Include="halo2vista\groups\ctrl_tag.h" />
+    <ClInclude Include="halo2vista\groups\dc_s_tag.h" />
+    <ClInclude Include="halo2vista\groups\deca_tag.h" />
+    <ClInclude Include="halo2vista\groups\DECR_tag.h" />
+    <ClInclude Include="halo2vista\groups\dec__tag.h" />
+    <ClInclude Include="halo2vista\groups\dgr__tag.h" />
+    <ClInclude Include="halo2vista\groups\effe_tag.h" />
+    <ClInclude Include="halo2vista\groups\egor_tag.h" />
+    <ClInclude Include="halo2vista\groups\eqip_tag.h" />
+    <ClInclude Include="halo2vista\groups\fog_tag.h" />
+    <ClInclude Include="halo2vista\groups\foot_tag.h" />
+    <ClInclude Include="halo2vista\groups\fpch_tag.h" />
+    <ClInclude Include="halo2vista\groups\garb_tag.h" />
+    <ClInclude Include="halo2vista\groups\gldf_tag.h" />
+    <ClInclude Include="halo2vista\groups\goof_tag.h" />
+    <ClInclude Include="halo2vista\groups\hlmt_tag.h" />
+    <ClInclude Include="halo2vista\groups\hsc__tag.h" />
+    <ClInclude Include="halo2vista\groups\hudg_tag.h" />
+    <ClInclude Include="halo2vista\groups\itmc_tag.h" />
+    <ClInclude Include="halo2vista\groups\jmad_tag.h" />
+    <ClInclude Include="halo2vista\groups\jpt!_tag.h" />
+    <ClInclude Include="halo2vista\groups\lens_tag.h" />
+    <ClInclude Include="halo2vista\groups\lifi_tag.h" />
+    <ClInclude Include="halo2vista\groups\ligh_tag.h" />
+    <ClInclude Include="halo2vista\groups\lsnd_tag.h" />
+    <ClInclude Include="halo2vista\groups\ltmp_tag.h" />
+    <ClInclude Include="halo2vista\groups\mach_tag.h" />
+    <ClInclude Include="halo2vista\groups\matg_tag.h" />
+    <ClInclude Include="halo2vista\groups\mcsr_tag.h" />
+    <ClInclude Include="halo2vista\groups\mdlg_tag.h" />
+    <ClInclude Include="halo2vista\groups\MGS2_tag.h" />
+    <ClInclude Include="halo2vista\groups\mode_tag.h" />
+    <ClInclude Include="halo2vista\groups\mulg_tag.h" />
+    <ClInclude Include="halo2vista\groups\nhdt_tag.h" />
+    <ClInclude Include="halo2vista\groups\phmo_tag.h" />
+    <ClInclude Include="halo2vista\groups\phys_tag.h" />
+    <ClInclude Include="halo2vista\groups\pmov_tag.h" />
+    <ClInclude Include="halo2vista\groups\pphy_tag.h" />
+    <ClInclude Include="halo2vista\groups\proj_tag.h" />
+    <ClInclude Include="halo2vista\groups\prt3_tag.h" />
+    <ClInclude Include="halo2vista\groups\PRTM_tag.h" />
+    <ClInclude Include="halo2vista\groups\sbsp_tag.h" />
+    <ClInclude Include="halo2vista\groups\scen_tag.h" />
+    <ClInclude Include="halo2vista\groups\scnr_tag.h" />
+    <ClInclude Include="halo2vista\groups\sfx+_tag.h" />
+    <ClInclude Include="halo2vista\groups\shad_tag.h" />
+    <ClInclude Include="halo2vista\groups\sily_tag.h" />
+    <ClInclude Include="halo2vista\groups\skin_tag.h" />
+    <ClInclude Include="halo2vista\groups\sky_tag.h" />
+    <ClInclude Include="halo2vista\groups\sncl_tag.h" />
+    <ClInclude Include="halo2vista\groups\snd!_tag.h" />
+    <ClInclude Include="halo2vista\groups\snde_tag.h" />
+    <ClInclude Include="halo2vista\groups\snmx_tag.h" />
+    <ClInclude Include="halo2vista\groups\spas_tag.h" />
+    <ClInclude Include="halo2vista\groups\spk!_tag.h" />
+    <ClInclude Include="halo2vista\groups\ssce_tag.h" />
+    <ClInclude Include="halo2vista\groups\sslt_tag.h" />
+    <ClInclude Include="halo2vista\groups\stem_tag.h" />
+    <ClInclude Include="halo2vista\groups\styl_tag.h" />
+    <ClInclude Include="halo2vista\groups\tag_definitions.h" />
+    <ClInclude Include="halo2vista\groups\tdtl_tag.h" />
+    <ClInclude Include="halo2vista\groups\trak_tag.h" />
+    <ClInclude Include="halo2vista\groups\trg__tag.h" />
+    <ClInclude Include="halo2vista\groups\udlg_tag.h" />
+    <ClInclude Include="halo2vista\groups\ugh!_tag.h" />
+    <ClInclude Include="halo2vista\groups\unic_tag.h" />
+    <ClInclude Include="halo2vista\groups\vehc_tag.h" />
+    <ClInclude Include="halo2vista\groups\vehi_tag.h" />
+    <ClInclude Include="halo2vista\groups\vrtx_tag.h" />
+    <ClInclude Include="halo2vista\groups\weap_tag.h" />
+    <ClInclude Include="halo2vista\groups\weat_tag.h" />
+    <ClInclude Include="halo2vista\groups\wgit_tag.h" />
+    <ClInclude Include="halo2vista\groups\wgtz_tag.h" />
+    <ClInclude Include="halo2vista\groups\wigl_tag.h" />
+    <ClInclude Include="halo2vista\groups\_cen_tag.h" />
+    <ClInclude Include="halo2vista\groups\_eap_tag.h" />
+    <ClInclude Include="halo2vista\groups\_ehi_tag.h" />
+    <ClInclude Include="halo2vista\groups\_fx__tag.h" />
+    <ClInclude Include="halo2vista\groups\_igh_tag.h" />
+    <ClInclude Include="halo2vista\groups\_ipd_tag.h" />
+    <ClInclude Include="halo2vista\groups\_qip_tag.h" />
+    <ClInclude Include="halo2vista\groups\_rea_tag.h" />
+    <ClInclude Include="halo2vista\groups\_sce_tag.h" />
+    <ClInclude Include="halo2vista\groups\_____tag.h" />
+    <ClInclude Include="halo2vista\structures.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="types.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Halo2VistaTagDefinitions.cpp" />
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

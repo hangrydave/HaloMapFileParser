@@ -1,8 +1,8 @@
 #pragma once
 
 #include "../utilities.h"
-#include "tags/definitions/tag_layouts.h"
-#include "tags/definitions/groups/tag_definitions.h"
+#include "halo2vista/structures.h"
+#include "halo2vista/groups/tag_definitions.h"
 #include <iostream>
 #include <map>
 #include <vector>
