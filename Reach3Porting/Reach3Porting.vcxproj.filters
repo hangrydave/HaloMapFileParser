@@ -24,6 +24,15 @@
     <ClInclude Include="definitions\cache_header.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="definitions\structs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tag_structure.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cache_info.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Reach3Porting.cpp">
@@ -33,6 +42,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="definitions\cache_header.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tag_structure.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
