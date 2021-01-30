@@ -36,6 +36,20 @@ void bytes_reader::seek(long offset)
     m_offset = offset;
 }
 
+int8_t bytes_reader::read_int8()
+{
+    int8_t num = buffer[m_offset] & 0xff;
+    m_offset += 1;
+    return num;
+}
+
+uint8_t bytes_reader::read_uint8()
+{
+    uint8_t num = buffer[m_offset] & 0xff;
+    m_offset += 1;
+    return num;
+}
+
 int16_t bytes_reader::read_int16()
 {
     int16_t num = 0;
@@ -133,4 +147,13 @@ std::string bytes_reader::read_string(int length)
     }
     m_offset += length;
     return s;
+}
+
+void bytes_reader::read_string(char* c, int length)
+{
+    for (int i = 0; i < length; i++)
+    {
+        c[i] = buffer[m_offset + i];
+    }
+    m_offset += length;
 }

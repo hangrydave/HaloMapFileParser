@@ -15,6 +15,8 @@ public:
 	long size();
 	long offset();
 	void seek(long offset);
+	int8_t read_int8();
+	uint8_t read_uint8();
 	int16_t read_int16();
 	uint16_t read_uint16();
 	int32_t read_int32();
@@ -24,5 +26,6 @@ public:
 	float read_float();
 	std::string read_string();
 	std::string read_string(int length);
+	void read_string(char* c, int length);
 };
 
