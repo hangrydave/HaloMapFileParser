@@ -1,27 +1,35 @@
 #pragma once
 
+#include <map>
 #include "bytes_reader.h"
 #include "cache_info.h"
+#include "tag_field.h"
 
 class tag_structure
 {
 private:
 	bytes_reader* reader;
-	s_cache_info info;
+	s_cache_info m_info;
+	std::map<std::string, tag_field*> field_map;
+	std::map<std::string, tag_structure*> block_map;
+	long m_offset;
+	long m_absolute_offset;
 protected:
 	virtual void read_fields() = 0;
-	void read_int8(int8_t& i, e_game game = both);
-	void read_uint8(uint8_t& i, e_game game = both);
-	void read_int16(int16_t& i, e_game game = both);
-	void read_uint16(uint16_t& i, e_game game = both);
-	void read_int32(int32_t& i, e_game game = both);
-	void read_uint32(uint32_t& i, e_game game = both);
-	void read_int64(int64_t& i, e_game game = both);
-	void read_uint64(uint64_t& i, e_game game = both);
-	void read_float(float& i, e_game game = both);
-	void read_string(char* c, int length, e_game game = both);
+	void read_int8(std::string name, e_game game = both);
+	void read_uint8(std::string name, e_game game = both);
+	void read_int16(std::string name, e_game game = both);
+	void read_uint16(std::string name, e_game game = both);
+	void read_int32(std::string name, e_game game = both);
+	void read_uint32(std::string name, e_game game = both);
+	void read_int64(std::string name, e_game game = both);
+	void read_uint64(std::string name, e_game game = both);
+	void read_float(std::string name, e_game game = both);
+	void read_string(std::string name, int length = -1, e_game game = both);
+	template <class T>
+	void read_block(std::string name, e_game game);
 public:
-	tag_structure(s_cache_info info);
+	tag_structure(s_cache_info info, long offset, long absolute_offset);
 	void read(bytes_reader* reader);
 };
 

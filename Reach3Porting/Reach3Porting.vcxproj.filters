@@ -33,6 +33,15 @@
     <ClInclude Include="cache_info.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="tag_field.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="e_game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="e_field_type.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Reach3Porting.cpp">
@@ -45,6 +54,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="tag_structure.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tag_field.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

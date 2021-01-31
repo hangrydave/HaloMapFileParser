@@ -1,13 +1,7 @@
 #pragma once
 
 #include <string>
-
-enum e_game
-{
-	halo3,
-	haloreach,
-	both
-};
+#include "e_game.h"
 
 struct s_cache_info
 {

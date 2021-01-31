@@ -156,8 +156,11 @@
     <ClInclude Include="cache_info.h" />
     <ClInclude Include="definitions\cache_header.h" />
     <ClInclude Include="definitions\structs.h" />
+    <ClInclude Include="e_game.h" />
+    <ClInclude Include="e_field_type.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="tag_field.h" />
     <ClInclude Include="tag_structure.h" />
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +172,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Reach3Porting.cpp" />
+    <ClCompile Include="tag_field.cpp" />
     <ClCompile Include="tag_structure.cpp" />
   </ItemGroup>
   <ItemGroup>
