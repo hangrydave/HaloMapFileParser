@@ -10,9 +10,9 @@ enum e_field_type
 	uint32,
 	int64,
 	uint64,
-	floating_point,
-	string_literal,
-	tag_block,
-	tag_ref,
-	data_ref
+	float32,
+	string,
+	tagblock,
+	tagref,
+	dataref
 };

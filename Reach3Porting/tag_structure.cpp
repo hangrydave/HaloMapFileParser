@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "tag_structure.h"
 
 tag_structure::tag_structure(s_cache_info info, long offset, long absolute_offset)
@@ -79,7 +78,7 @@ template <class T>
 void tag_structure::read_block(std::string name, e_game game)
 {
     long current_offset = reader->offset();
-    field_map[name] = new tag_field(e_field_type::tag_block, current_offset - m_absolute_offset, current_offset);
+    field_map[name] = new tag_field(e_field_type::tagblock, current_offset - m_absolute_offset, current_offset);
     current_offset = reader->offset();
     // math to convert pointer to offset
     //tag_structure* structure = new T(m_info, );

@@ -7,7 +7,7 @@
 
 class cache_header : public tag_structure
 {
-public:
+public:/*
 	struct s_halo3
 	{
 		uint32_t header_signature;
@@ -188,7 +188,7 @@ public:
 		int32_t guid[4];
 	};
 	int haloreach_size = sizeof(s_haloreach);
-	s_haloreach* haloreach_data;
+	s_haloreach* haloreach_data;*/
 
 	void load() override;
 	void sync() override;

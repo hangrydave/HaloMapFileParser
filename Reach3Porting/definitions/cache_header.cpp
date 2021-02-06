@@ -1,8 +1,7 @@
-#include "../pch.h"
 #include "cache_header.h"
 
 void cache_header::load()
-{
+{/*
 	if (m_info.game == e_game::halo3)
 	{
 		char* bytes = reader->read_bytes(halo3_size);
@@ -30,7 +29,7 @@ void cache_header::load()
 
 	read_uint8(unknown1);
 	read_int8(tracked_build);
-	read_uint8(unknown3);
+	read_uint8(unknown3);*/
 	// too lazy to do this, maybe switch to an automated system which stores the values in a map<string, something>?
 	//read_uint8()
 

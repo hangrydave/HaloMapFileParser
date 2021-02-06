@@ -15,12 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="definitions\cache_header.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -42,12 +36,12 @@
     <ClInclude Include="e_field_type.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="xml_parser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Reach3Porting.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="definitions\cache_header.cpp">
@@ -57,6 +51,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="tag_field.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="xml_parser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
