@@ -11,7 +11,8 @@ tag_structure::tag_structure(s_cache_info info, long offset, long absolute_offse
 void tag_structure::read(bytes_reader* reader)
 {
     this->reader = reader;
-    read_fields();
+    load();
+    sync();
 }
 /*
 void tag_structure::read_int8(std::string name, e_game game = both)

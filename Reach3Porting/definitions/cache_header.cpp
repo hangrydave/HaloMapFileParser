@@ -1,9 +1,19 @@
 #include "../pch.h"
 #include "cache_header.h"
 
-void cache_header::read_fields()
+void cache_header::load()
 {
-	read_uint32(header_signature);
+	if (m_info.game == e_game::halo3)
+	{
+		char* bytes = reader->read_bytes(halo3_size);
+		halo3_data = reinterpret_cast<s_halo3*>(bytes);
+	}
+	else if (m_info.game == e_game::haloreach)
+	{
+		char* bytes = reader->read_bytes(haloreach_size);
+		haloreach_data = reinterpret_cast<s_haloreach*>(bytes);
+	}
+	read_uint32("header_signature");
 	read_int32(file_version);
 	read_int64(file_length);
 	read_int64(file_compressed_length);
@@ -23,4 +33,11 @@ void cache_header::read_fields()
 	read_uint8(unknown3);
 	// too lazy to do this, maybe switch to an automated system which stores the values in a map<string, something>?
 	//read_uint8()
+
+	// example_block = 
+}
+
+void cache_header::sync()
+{
+
 }

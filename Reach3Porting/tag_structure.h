@@ -7,15 +7,18 @@
 
 class tag_structure
 {
-private:
-	bytes_reader* reader;
+protected:
 	s_cache_info m_info;
+	bytes_reader* reader;
+private:
 	std::map<std::string, tag_field*> field_map;
 	std::map<std::string, tag_structure*> block_map;
 	long m_offset;
 	long m_absolute_offset;
 protected:
-	virtual void read_fields() = 0;
+	virtual void sync() = 0;
+	void read(bytes_reader* reader);
+	virtual void load() = 0;
 	void read_int8(std::string name, e_game game = both);
 	void read_uint8(std::string name, e_game game = both);
 	void read_int16(std::string name, e_game game = both);
@@ -30,6 +33,5 @@ protected:
 	void read_block(std::string name, e_game game);
 public:
 	tag_structure(s_cache_info info, long offset, long absolute_offset);
-	void read(bytes_reader* reader);
 };
 

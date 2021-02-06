@@ -157,3 +157,13 @@ void bytes_reader::read_string(char* c, int length)
     }
     m_offset += length;
 }
+
+char* bytes_reader::read_bytes(int length)
+{
+    char* result = new char[length];
+    for (int i = 0; i < length; i++)
+    {
+        result[i] = buffer[m_offset + i];
+    }
+    return result;
+}

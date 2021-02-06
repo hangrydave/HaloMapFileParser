@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<struct>
+    <uint32 name="header signature"/>
+    <int32 name="file version"/>
+    <int64 name="file length"/>
+    <int64 name="file compressed length"/>
+    
+    <uint64 name="tag header address"/>
+    <uint32 name="tag buffer offset"/>
+    <uint32 name="tag buffer size"/>
+
+    <string name="source file" length="256"/>
+    <string name="build" length="32"/>
+    
+    <int16 name="scenario type"/>
+    <int16 name="load type"/>
+    
+    <unknown length="1"/>
+    
+    <int8 name="tracked build"/>
+
+    <unknown length="10"/>
+
+    <unknown length="12" game="3"/>
+
+    <int32 name="string count"/>
+    <int32 name="string table length"/>
+    <int32 name="string table indices offset"/>
+    <int32 name="string table offset"/>
+    <int32 name="string ids namespace table count" game="reach"/>
+    <int32 name="string ids namespace table offset" game="reach"/>
+
+    <uint32 name="flags"/>
+
+    <uint64 name="timestamp"/>
+    <uint64 name="scenario type timestamp 0"/>
+    <uint64 name="scenario type timestamp 1"/>
+    <uint64 name="scenario type timestamp 2"/>
+    <uint64 name="scenario type timestamp 3"/>
+
+    <string name="internal name" length="32"/>
+    <unknown length="4"/>
+    <string name="scenario name" length="256"/>
+    <int32 name="minor version"/>
+
+    <uint32 name="file count"/>
+    <uint32 name="file table offset"/>
+    <uint32 name="file table length"/>
+    <uint32 name="file table indices offset"/>
+
+    <uint32 name="checksum"/>
+
+    <unknown length="32"/>
+    <unknown length="4" game="3"/>
+
+    <uint64 name="virtual base address"/>
+    <uint32 name="xdk version"/>
+    <unknown length="4"/>
+
+    <array name="partitions" size="6">
+        <uint64 name="elements"/>
+        <uint64 name="size"/>
+    </array>
+
+    <array name="SHA1 A" type="uint32" size="5"/>
+    <array name="SHA1 B" type="uint32" size="5"/>
+    <array name="SHA1 C" type="uint32" size="5"/>
+    <array name="RSA" type="uint32" size="64"/>
+
+    <array name="GUID" type="uint32" size="4"/>
+
+    <struct name="section table">
+        <array name="offset masks" type="uint32" size="4"/>
+        <array name="sections" size="4">
+            <uint32 name="offset"/>
+            <uint32 name="size"/>
+        </array>
+    </struct>
+</struct>

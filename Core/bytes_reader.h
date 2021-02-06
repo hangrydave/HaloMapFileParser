@@ -27,5 +27,6 @@ public:
 	std::string read_string();
 	std::string read_string(int length);
 	void read_string(char* c, int length);
+	char* read_bytes(int length);
 };
 
