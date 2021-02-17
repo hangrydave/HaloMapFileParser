@@ -24,9 +24,9 @@ string halo_2_vista_parser::register_string(std::vector<string>& string_vector, 
     return string_vector[index];
 }
 
-long halo_2_vista_parser::get_tag_file_offset(long tag_offset)
+unsigned long halo_2_vista_parser::get_tag_file_offset(unsigned long tag_offset)
 {
-    long offset = header->meta_offset - header->meta_offset_mask + tag_offset;
+    unsigned long offset = header->meta_offset - header->meta_offset_mask + tag_offset;
     return offset;
 }
 
@@ -50,7 +50,11 @@ void halo_2_vista_parser::parse_tag_groups()
 template<typename T>
 std::vector<T*>* halo_2_vista_parser::get_tagblock_data(s_tag_block tag_block)
 {
-    long data_start = get_tag_file_offset(tag_block.pointer);// tag_block.pointer + header->meta_offset - header->meta_offset_mask;
+    if (tag_block.entry_count < 0 ||
+        tag_block.pointer < 0)
+        return new std::vector<T*>();
+
+    unsigned long data_start = get_tag_file_offset(tag_block.pointer);
     std::vector<T*>* data_vec = new std::vector<T*>(tag_block.entry_count);
     for (int i = 0; i < tag_block.entry_count; i++)
     {

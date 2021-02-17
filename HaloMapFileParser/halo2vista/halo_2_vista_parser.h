@@ -33,7 +33,7 @@ private:
     const int tag_element_size = sizeof(s_tag_element);
 
     std::string register_string(std::vector<std::string>& string_vector, int index, int table_index_offset, int table_offset);
-    long get_tag_file_offset(long tag_offset);
+    unsigned long get_tag_file_offset(unsigned long tag_offset);
 
     void parse_tag_groups();
     template<typename T>

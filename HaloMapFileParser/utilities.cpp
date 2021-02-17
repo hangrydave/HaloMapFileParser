@@ -134,7 +134,7 @@ void utilities::write_to_file(const string& path, const char* bytes, int count)
     output.close();
 }
 
-void utilities::read_path(string& parent_path, string& file_path, const char* buffer, long offset)
+void utilities::read_path(string& parent_path, string& file_path, const char* buffer, unsigned long offset)
 {
     parent_path.clear();
     file_path.clear();
@@ -174,7 +174,7 @@ void utilities::write_some_chars(const string& path, const char* data, const int
     output.close();
 }
 
-char* utilities::read_bytes(const char* buffer, long offset, int count)
+char* utilities::read_bytes(const char* buffer, unsigned long offset, int count)
 {
     char* result = new char[count];
     for (int i = 0; i < count; i++)
@@ -184,7 +184,7 @@ char* utilities::read_bytes(const char* buffer, long offset, int count)
     return result;
 }
 
-int utilities::read_int(const char* buffer, long offset)
+int utilities::read_int(const char* buffer, unsigned long offset)
 {
     int num = 0;
     num += (buffer[offset] & 0xff);
@@ -194,7 +194,7 @@ int utilities::read_int(const char* buffer, long offset)
     return num;
 }
 
-string utilities::read_string(const char* buffer, long offset)
+string utilities::read_string(const char* buffer, unsigned long offset)
 {
     string s;
     while (buffer[offset] != '\0')
@@ -205,7 +205,7 @@ string utilities::read_string(const char* buffer, long offset)
     return s;
 }
 
-string utilities::read_string_without_slashes(const char* buffer, long offset)
+string utilities::read_string_without_slashes(const char* buffer, unsigned long offset)
 {
     string s;
     char c = buffer[offset];

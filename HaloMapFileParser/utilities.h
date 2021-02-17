@@ -28,13 +28,13 @@ namespace utilities
 	bool create_directories(const std::string& path);
 	void create_file(const std::string& path);
 	void write_to_file(const std::string& path, const char* bytes, int count);
-	void read_path(std::string& parent_path, std::string& file_path, const char* buffer, long offset);
+	void read_path(std::string& parent_path, std::string& file_path, const char* buffer, unsigned long offset);
 	void write_some_chars(const std::string& path, const char* data, int start_index, int size);
 
-	char* read_bytes(const char* buffer, long offset, int count);
-	int read_int(const char* buffer, long offset);
-	std::string read_string(const char* buffer, long offset);
-	std::string read_string_without_slashes(const char* buffer, long offset);
+	char* read_bytes(const char* buffer, unsigned long offset, int count);
+	int read_int(const char* buffer, unsigned long offset);
+	std::string read_string(const char* buffer, unsigned long offset);
+	std::string read_string_without_slashes(const char* buffer, unsigned long offset);
 
 	std::string hex_to_string(long hex);
 	std::string trim(const std::string& s);
