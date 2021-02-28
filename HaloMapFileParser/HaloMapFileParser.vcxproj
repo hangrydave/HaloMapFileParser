@@ -161,7 +161,7 @@
     <ClInclude Include="utilities.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TagDefinitions\TagDefinitions.vcxproj">
+    <ProjectReference Include="..\OldTagDefinitions\TagDefinitions.vcxproj">
       <Project>{1ede0c89-75f8-455d-8f80-6891a7bc01ec}</Project>
     </ProjectReference>
   </ItemGroup>
